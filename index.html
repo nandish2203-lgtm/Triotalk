@@ -3,7 +3,7 @@
 <head>
   <meta charset="UTF-8">
   <meta name="viewport" content="width=device-width, initial-scale=1.0">
-  <title>TrioTalk \u2014 Private Chat</title>
+  <title>TrioTalk — Private Chat</title>
   <link href="https://fonts.googleapis.com/css2?family=DM+Sans:opsz,wght@9..40,300;9..40,400;9..40,500;9..40,600&family=Space+Grotesk:wght@500;600;700&display=swap" rel="stylesheet">
   <script src="https://www.gstatic.com/firebasejs/9.22.2/firebase-app-compat.js"></script>
   <script src="https://www.gstatic.com/firebasejs/9.22.2/firebase-auth-compat.js"></script>
@@ -141,824 +141,51 @@
     .gif-search-bar{padding:10px 12px;border-bottom:1px solid var(--border)}
     .gif-search-bar input{width:100%;padding:9px 13px;background:var(--bg-tertiary);border:1px solid var(--border);border-radius:9px;color:var(--text-primary);font-family:'DM Sans',sans-serif;font-size:14px;outline:none}
     .gif-grid{display:grid;grid-template-columns:1fr 1fr;gap:6px;padding:10px;overflow-y:auto;max-height:300px}
-    .gif-card    .auth-logo {
-      text-align:center;
-      margin-bottom:30px;
-    }
-    .logo-icon {
-      width:66px; height:66px;
-      background:var(--accent);
-      border-radius:20px;
-      display:inline-flex;
-      align-items:center;
-      justify-content:center;
-      font-size:32px;
-      margin-bottom:14px;
-      box-shadow:0 0 40px rgba(0,212,170,.3);
-    }
-    .auth-logo h1 {
-      font-family:'Space Grotesk',sans-serif;
-      font-size:27px;
-      font-weight:700;
-    }
-    .auth-logo p {
-      font-size:13.5px;
-      color:var(--text-secondary);
-      margin-top:4px;
-    }
-
-    /* Tabs */
-    .auth-tabs {
-      display:flex;
-      background:var(--bg-tertiary);
-      border-radius:12px;
-      padding:4px;
-      margin-bottom:22px;
-    }
-    .auth-tab {
-      flex:1;
-      padding:9px;
-      text-align:center;
-      border-radius:9px;
-      cursor:pointer;
-      font-size:14px;
-      font-weight:500;
-      color:var(--text-secondary);
-      transition:all .2s;
-      user-select:none;
-    }
-    .auth-tab.active { background:var(--accent); color:#000; font-weight:600; }
-
-    .auth-form { display:none; }
-    .auth-form.active { display:block; }
-
-    /* Form fields */
-    .form-group { margin-bottom:15px; }
-    .form-group label {
-      display:block;
-      font-size:13px;
-      font-weight:500;
-      color:var(--text-secondary);
-      margin-bottom:6px;
-    }
-    .form-group input,
-    .form-group textarea {
-      width:100%;
-      padding:12px 15px;
-      background:var(--bg-tertiary);
-      border:1px solid var(--border);
-      border-radius:11px;
-      color:var(--text-primary);
-      font-family:'DM Sans',sans-serif;
-      font-size:15px;
-      outline:none;
-      transition:border-color .2s, box-shadow .2s;
-    }
-    .form-group input:focus {
-      border-color:var(--accent);
-      box-shadow:0 0 0 3px var(--accent-dim);
-    }
-
-    /* Buttons */
-    .btn-primary {
-      width:100%;
-      padding:13px;
-      background:var(--accent);
-      color:#000;
-      border:none;
-      border-radius:11px;
-      font-family:'DM Sans',sans-serif;
-      font-size:15px;
-      font-weight:600;
-      cursor:pointer;
-      transition:background .2s, transform .1s;
-      margin-top:4px;
-      display:flex;
-      align-items:center;
-      justify-content:center;
-      gap:8px;
-    }
-    .btn-primary:hover { background:var(--accent-dark); }
-    .btn-primary:active { transform:scale(.98); }
-    .btn-primary:disabled { opacity:.6; cursor:not-allowed; }
-
-    .btn-secondary {
-      width:100%;
-      padding:11px;
-      background:transparent;
-      color:var(--accent);
-      border:1px solid var(--accent);
-      border-radius:11px;
-      font-family:'DM Sans',sans-serif;
-      font-size:14px;
-      font-weight:500;
-      cursor:pointer;
-      transition:all .2s;
-      margin-top:8px;
-    }
-    .btn-secondary:hover { background:var(--accent-dim); }
-
-    .error-box {
-      background:rgba(248,81,73,.1);
-      border:1px solid rgba(248,81,73,.3);
-      color:var(--danger);
-      padding:10px 14px;
-      border-radius:9px;
-      font-size:13px;
-      margin-bottom:14px;
-      display:none;
-    }
-
-    /* Spinner */
-    .spinner {
-      display:inline-block;
-      width:18px; height:18px;
-      border:2px solid rgba(0,0,0,.2);
-      border-top-color:#000;
-      border-radius:50%;
-      animation:spin .6s linear infinite;
-    }
-    @keyframes spin { to { transform:rotate(360deg); } }
-
-    /* ===================================================
-       USERNAME SCREEN
-    =================================================== */
-    #username-screen {
-      display:none;
-      align-items:center;
-      justify-content:center;
-      height:100vh;
-    }
-
-    /* ===================================================
-       MAIN APP LAYOUT
-    =================================================== */
-    #app-screen {
-      display:none;
-      height:100vh;
-      flex-direction:row;
-    }
-
-    /* ========================
-       SIDEBAR
-    ========================= */
-    #sidebar {
-      width:310px;
-      min-width:310px;
-      background:var(--bg-secondary);
-      border-right:1px solid var(--border);
-      display:flex;
-      flex-direction:column;
-      height:100vh;
-      transition:width .3s;
-    }
-
-    .sidebar-header {
-      padding:14px 16px;
-      border-bottom:1px solid var(--border);
-      display:flex;
-      align-items:center;
-      justify-content:space-between;
-      gap:10px;
-    }
-    .my-profile {
-      display:flex;
-      align-items:center;
-      gap:10px;
-      min-width:0;
-    }
-
-    /* Avatar */
-    .avatar {
-      width:40px; height:40px;
-      border-radius:50%;
-      background:var(--accent);
-      display:flex;
-      align-items:center;
-      justify-content:center;
-      font-weight:700;
-      font-size:16px;
-      color:#000;
-      flex-shrink:0;
-      position:relative;
-      user-select:none;
-    }
-    .avatar.lg { width:48px; height:48px; font-size:20px; }
-    .avatar.xl { width:80px; height:80px; font-size:34px; }
-    .avatar[data-status="online"]::after {
-      content:'';
-      position:absolute;
-      bottom:1px; right:1px;
-      width:10px; height:10px;
-      background:var(--online);
-      border-radius:50%;
-      border:2px solid var(--bg-secondary);
-    }
-    .avatar[data-status="offline"]::after {
-      content:'';
-      position:absolute;
-      bottom:1px; right:1px;
-      width:10px; height:10px;
-      background:var(--text-muted);
-      border-radius:50%;
-      border:2px solid var(--bg-secondary);
-    }
-
-    .profile-text { min-width:0; }
-    .my-name {
-      font-weight:600;
-      font-size:15px;
-      white-space:nowrap;
-      overflow:hidden;
-      text-overflow:ellipsis;
-    }
-    .my-tag {
-      font-size:12px;
-      color:var(--online);
-    }
-
-    .sidebar-actions { display:flex; gap:6px; }
-    .icon-btn {
-      width:34px; height:34px;
-      border-radius:9px;
-      background:var(--bg-tertiary);
-      border:none;
-      color:var(--text-secondary);
-      cursor:pointer;
-      display:flex;
-      align-items:center;
-      justify-content:center;
-      font-size:15px;
-      transition:all .2s;
-      flex-shrink:0;
-    }
-    .icon-btn:hover { background:var(--accent-dim); color:var(--accent); }
-
-    .sidebar-label {
-      padding:14px 16px 6px;
-      font-size:10.5px;
-      font-weight:600;
-      text-transform:uppercase;
-      letter-spacing:1.2px;
-      color:var(--text-muted);
-    }
-
-    .friend-list {
-      flex:1;
-      overflow-y:auto;
-      padding:4px 8px 8px;
-    }
-
-    .friend-item {
-      display:flex;
-      align-items:center;
-      gap:11px;
-      padding:11px 10px;
-      border-radius:13px;
-      cursor:pointer;
-      transition:all .18s;
-    }
-    .friend-item:hover { background:var(--bg-hover); }
-    .friend-item.active { background:var(--accent-dim); }
-    .friend-item.active .friend-name { color:var(--accent); }
-
-    .friend-avatar-wrap { position:relative; flex-shrink:0; }
-
-    .friend-info { flex:1; min-width:0; }
-    .friend-name {
-      font-weight:500;
-      font-size:14.5px;
-      white-space:nowrap;
-      overflow:hidden;
-      text-overflow:ellipsis;
-    }
-    .friend-preview {
-      font-size:12.5px;
-      color:var(--text-secondary);
-      white-space:nowrap;
-      overflow:hidden;
-      text-overflow:ellipsis;
-      margin-top:2px;
-    }
-
-    .friend-meta {
-      display:flex;
-      flex-direction:column;
-      align-items:flex-end;
-      gap:5px;
-      flex-shrink:0;
-    }
-    .friend-time { font-size:11px; color:var(--text-muted); }
-    .online-dot {
-      width:8px; height:8px;
-      background:var(--online);
-      border-radius:50%;
-    }
-
-    /* ========================
-       CHAT AREA
-    ========================= */
-    #chat-area {
-      flex:1;
-      display:flex;
-      flex-direction:column;
-      height:100vh;
-      background:var(--bg-primary);
-      position:relative;
-      min-width:0;
-    }
-
-    #no-chat {
-      flex:1;
-      display:flex;
-      flex-direction:column;
-      align-items:center;
-      justify-content:center;
-      gap:14px;
-      color:var(--text-muted);
-    }
-    #no-chat .nc-icon { font-size:72px; opacity:.2; }
-    #no-chat h3 { font-size:20px; font-family:'Space Grotesk',sans-serif; }
-    #no-chat p { font-size:14px; }
-
-    #chat-window {
-      display:none;
-      flex-direction:column;
-      height:100vh;
-    }
-
-    /* Chat Header */
-    #chat-header {
-      padding:12px 18px;
-      border-bottom:1px solid var(--border);
-      display:flex;
-      align-items:center;
-      gap:12px;
-      background:var(--bg-secondary);
-    }
-    .ch-info { flex:1; min-width:0; }
-    .ch-name {
-      font-family:'Space Grotesk',sans-serif;
-      font-size:16px;
-      font-weight:600;
-    }
-    .ch-status {
-      font-size:12px;
-      color:var(--text-secondary);
-      margin-top:2px;
-    }
-    .ch-status.online { color:var(--online); }
-
-    .chat-actions { display:flex; gap:8px; }
-    .call-btn {
-      width:38px; height:38px;
-      background:var(--bg-tertiary);
-      border:none;
-      border-radius:10px;
-      color:var(--text-secondary);
-      font-size:17px;
-      cursor:pointer;
-      display:flex;
-      align-items:center;
-      justify-content:center;
-      transition:all .2s;
-    }
-    .call-btn:hover { background:var(--accent); color:#000; }
-    .call-btn.video:hover { background:#3fb950; color:#fff; }
-
-    /* Messages */
-    #messages-container {
-      flex:1;
-      overflow-y:auto;
-      padding:18px 20px;
-      display:flex;
-      flex-direction:column;
-      gap:3px;
-      scroll-behavior:smooth;
-    }
-
-    .date-sep {
-      text-align:center;
-      margin:12px 0 6px;
-    }
-    .date-sep span {
-      font-size:11.5px;
-      color:var(--text-muted);
-      background:var(--bg-primary);
-      padding:4px 14px;
-      border-radius:100px;
-      border:1px solid var(--border);
-    }
-
-    .msg-row {
-      display:flex;
-      align-items:flex-end;
-      gap:8px;
-      max-width:100%;
-    }
-    .msg-row.sent { justify-content:flex-end; }
-    .msg-row.received { justify-content:flex-start; }
-
-    .bubble {
-      max-width:62%;
-      padding:10px 14px;
-      border-radius:18px;
-      font-size:14.5px;
-      line-height:1.5;
-      word-break:break-word;
-      position:relative;
-      animation:msgIn .2s ease;
-    }
-    @keyframes msgIn {
-      from{opacity:0;transform:translateY(6px)}
-      to{opacity:1;transform:translateY(0)}
-    }
-    .msg-row.sent .bubble {
-      background:var(--msg-sent);
-      color:#003828;
-      border-bottom-right-radius:4px;
-      font-weight:500;
-    }
-    .msg-row.received .bubble {
-      background:var(--msg-recv);
-      color:var(--text-primary);
-      border-bottom-left-radius:4px;
-    }
-    .msg-time {
-      font-size:10.5px;
-      opacity:.55;
-      display:block;
-      margin-top:4px;
-      text-align:right;
-    }
-    .msg-row.received .msg-time { text-align:left; }
-
-    .bubble img {
-      max-width:240px;
-      border-radius:10px;
-      display:block;
-      cursor:pointer;
-      transition:opacity .2s;
-    }
-    .bubble img:hover { opacity:.88; }
-    .bubble.img-bubble { padding:5px; }
-
-    /* Typing indicator */
-    #typing-bar {
-      min-height:30px;
-      padding:0 20px 4px;
-      display:flex;
-      align-items:center;
-      gap:8px;
-      font-size:13px;
-      color:var(--text-secondary);
-      font-style:italic;
-    }
-    .typing-dots { display:flex; gap:3px; }
-    .typing-dot {
-      width:6px; height:6px;
-      background:var(--text-secondary);
-      border-radius:50%;
-      animation:tdot 1.2s infinite;
-    }
-    .typing-dot:nth-child(2){animation-delay:.2s}
-    .typing-dot:nth-child(3){animation-delay:.4s}
-    @keyframes tdot {
-      0%,60%,100%{transform:translateY(0)}
-      30%{transform:translateY(-5px)}
-    }
-
-    /* Input Area */
-    #input-area {
-      padding:10px 14px 12px;
-      border-top:1px solid var(--border);
-      background:var(--bg-secondary);
-      display:flex;
-      align-items:flex-end;
-      gap:8px;
-    }
-    .tool-btn {
-      width:40px; height:40px;
-      background:var(--bg-tertiary);
-      border:none;
-      border-radius:11px;
-      color:var(--text-secondary);
-      font-size:19px;
-      cursor:pointer;
-      display:flex;
-      align-items:center;
-      justify-content:center;
-      transition:all .2s;
-      flex-shrink:0;
-    }
-    .tool-btn:hover { background:var(--accent-dim); color:var(--accent); }
-    .tool-btn.gif-btn { font-size:12px; font-weight:700; font-family:'Space Grotesk',sans-serif; }
-
-    #input-wrap {
-      flex:1;
-      background:var(--bg-tertiary);
-      border:1px solid var(--border);
-      border-radius:13px;
-      display:flex;
-      align-items:center;
-      padding:0 12px;
-      transition:border-color .2s;
-    }
-    #input-wrap:focus-within { border-color:var(--accent); }
-    #message-input {
-      flex:1;
-      background:transparent;
-      border:none;
-      outline:none;
-      color:var(--text-primary);
-      font-family:'DM Sans',sans-serif;
-      font-size:15px;
-      padding:10px 0;
-      resize:none;
-      max-height:100px;
-      line-height:1.4;
-    }
-    #message-input::placeholder { color:var(--text-muted); }
-
-    #send-btn {
-      width:44px; height:44px;
-      background:var(--accent);
-      border:none;
-      border-radius:13px;
-      color:#003828;
-      font-size:20px;
-      cursor:pointer;
-      display:flex;
-      align-items:center;
-      justify-content:center;
-      flex-shrink:0;
-      transition:all .2s;
-    }
-    #send-btn:hover { background:var(--accent-dark); transform:scale(1.05); }
-
-    /* ========================
-       EMOJI PICKER PANEL
-    ========================= */
-    #emoji-panel {
-      position:absolute;
-      bottom:76px;
-      left:20px;
-      z-index:200;
-      display:none;
-      border-radius:14px;
-      overflow:hidden;
-      box-shadow:var(--shadow);
-    }
-
-    /* ========================
-       GIF PICKER PANEL
-    ========================= */
-    #gif-panel {
-      position:absolute;
-      bottom:76px;
-      left:70px;
-      z-index:200;
-      display:none;
-      background:var(--bg-secondary);
-      border:1px solid var(--border);
-      border-radius:16px;
-      width:330px;
-      box-shadow:var(--shadow);
-      flex-direction:column;
-      overflow:hidden;
-    }
-    .gif-search-bar {
-      padding:10px 12px;
-      border-bottom:1px solid var(--border);
-    }
-    .gif-search-bar input {
-      width:100%;
-      padding:9px 13px;
-      background:var(--bg-tertiary);
-      border:1px solid var(--border);
-      border-radius:9px;
-      color:var(--text-primary);
-      font-family:'DM Sans',sans-serif;
-      font-size:14px;
-      outline:none;
-    }
-    .gif-grid {
-      display:grid;
-      grid-template-columns:1fr 1fr;
-      gap:6px;
-      padding:10px;
-      overflow-y:auto;
-      max-height:300px;
-    }
-    .gif-card {
-      border-radius:9px;
-      overflow:hidden;
-      cursor:pointer;
-      transition:transform .2s;
-      aspect-ratio:16/9;
-      background:var(--bg-tertiary);
-    }
-    .gif-card:hover { transform:scale(1.04); }
-    .gif-card img { width:100%; height:100%; object-fit:cover; display:block; }
-    .gif-empty {
-      grid-column:span 2;
-      text-align:center;
-      padding:24px;
-      color:var(--text-muted);
-      font-size:13px;
-    }
-
-    /* ========================
-       CALL OVERLAY
-    ========================= */
-    #call-overlay {
-      display:none;
-      position:fixed;
-      inset:0;
-      background:rgba(0,0,0,.94);
-      z-index:1000;
-      flex-direction:column;
-      align-items:center;
-      justify-content:center;
-      gap:24px;
-    }
-    .call-info-box { text-align:center; }
-    .call-avatar-big {
-      width:100px; height:100px;
-      border-radius:50%;
-      background:var(--accent);
-      color:#000;
-      font-size:42px;
-      font-weight:700;
-      display:flex;
-      align-items:center;
-      justify-content:center;
-      margin:0 auto 18px;
-      animation:cpulse 2s ease-in-out infinite;
-    }
-    @keyframes cpulse {
-      0%,100%{box-shadow:0 0 0 0 rgba(0,212,170,.4)}
-      50%{box-shadow:0 0 0 24px rgba(0,212,170,0)}
-    }
-    .call-peer-name {
-      font-family:'Space Grotesk',sans-serif;
-      font-size:28px;
-      font-weight:700;
-      color:#fff;
-      margin-bottom:6px;
-    }
-    .call-state { font-size:16px; color:#aaa; }
-
-    #video-wrap {
-      display:none;
-      position:relative;
-      width:min(640px,90vw);
-      aspect-ratio:16/9;
-      border-radius:18px;
-      overflow:hidden;
-      background:#000;
-    }
-    #remote-video { width:100%; height:100%; object-fit:cover; }
-    #local-video {
-      position:absolute;
-      bottom:12px; right:12px;
-      width:130px;
-      border-radius:10px;
-      border:2px solid #fff;
-      object-fit:cover;
-    }
-
-    .call-controls {
-      display:flex;
-      gap:22px;
-    }
-    .cc-btn {
-      width:60px; height:60px;
-      border-radius:50%;
-      border:none;
-      font-size:22px;
-      cursor:pointer;
-      display:flex;
-      align-items:center;
-      justify-content:center;
-      transition:all .2s;
-    }
-    .cc-btn:hover { transform:scale(1.1); }
-    .cc-btn.end { background:#e53935; color:#fff; }
-    .cc-btn.toggle { background:#333; color:#fff; }
-
-    /* ========================
-       INCOMING CALL TOAST
-    ========================= */
-    #incoming-call {
-      display:none;
-      position:fixed;
-      top:18px; right:18px;
-      background:var(--bg-secondary);
-      border:1px solid var(--border);
-      border-radius:18px;
-      padding:16px 18px;
-      z-index:1001;
-      box-shadow:var(--shadow);
-      min-width:270px;
-      animation:slideInRight .3s ease;
-    }
-    @keyframes slideInRight {
-      from{transform:translateX(110%);opacity:0}
-      to{transform:translateX(0);opacity:1}
-    }
-    .inc-header {
-      display:flex;
-      align-items:center;
-      gap:12px;
-      margin-bottom:14px;
-    }
-    .inc-text h4 { font-size:15px; font-weight:600; margin-bottom:2px; }
-    .inc-text p { font-size:12.5px; color:var(--text-secondary); }
-    .inc-actions { display:flex; gap:10px; }
-    .inc-accept,.inc-decline {
-      flex:1;
-      padding:10px;
-      border:none;
-      border-radius:11px;
-      font-weight:600;
-      font-size:13.5px;
-      cursor:pointer;
-      transition:opacity .2s;
-    }
-    .inc-accept { background:var(--online); color:#fff; }
-    .inc-decline { background:var(--danger); color:#fff; }
-    .inc-accept:hover,.inc-decline:hover { opacity:.85; }
-
-    /* ========================
-       IMAGE PREVIEW MODAL
-    ========================= */
-    #img-modal {
-      display:none;
-      position:fixed;
-      inset:0;
-      background:rgba(0,0,0,.92);
-      z-index:2000;
-      align-items:center;
-      justify-content:center;
-      cursor:zoom-out;
-    }
-    #img-modal img {
-      max-width:92vw;
-      max-height:92vh;
-      border-radius:10px;
-      box-shadow:0 20px 60px rgba(0,0,0,.6);
-    }
-
-    /* ========================
-       TOAST NOTIFICATIONS
-    ========================= */
-    #toast-wrap {
-      position:fixed;
-      bottom:24px;
-      left:50%;
-      transform:translateX(-50%);
-      z-index:3000;
-      display:flex;
-      flex-direction:column;
-      gap:8px;
-      align-items:center;
-    }
-    .toast {
-      background:var(--bg-secondary);
-      border:1px solid var(--border);
-      border-radius:11px;
-      padding:11px 18px;
-      font-size:13.5px;
-      color:var(--text-primary);
-      box-shadow:var(--shadow);
-      animation:toastIn .3s ease;
-      white-space:nowrap;
-    }
-    .toast.ok { border-left:3px solid var(--accent); }
-    .toast.err { border-left:3px solid var(--danger); }
-    @keyframes toastIn {
-      from{opacity:0;transform:translateY(8px)}
-      to{opacity:1;transform:translateY(0)}
-    }
-
-    /* ========================
-       RESPONSIVE
-    ========================= */
-    @media(max-width:700px) {
-      #sidebar { width:68px; min-width:68px; }
-      .my-name,.my-tag,.sidebar-label,
-      .friend-info,.friend-meta,.profile-text { display:none; }
-      .auth-card { width:95%; padding:24px 20px; }
-      #emoji-panel,#gif-panel { left:8px; }
+    .gif-card{border-radius:9px;overflow:hidden;cursor:pointer;transition:transform .2s;aspect-ratio:16/9;background:var(--bg-tertiary)}
+    .gif-card:hover{transform:scale(1.04)}
+    .gif-card img{width:100%;height:100%;object-fit:cover;display:block}
+    .gif-empty{grid-column:span 2;text-align:center;padding:24px;color:var(--text-muted);font-size:13px}
+    #call-overlay{display:none;position:fixed;inset:0;background:rgba(0,0,0,.94);z-index:1000;flex-direction:column;align-items:center;justify-content:center;gap:24px}
+    .call-info-box{text-align:center}
+    .call-avatar-big{width:100px;height:100px;border-radius:50%;background:var(--accent);color:#000;font-size:42px;font-weight:700;display:flex;align-items:center;justify-content:center;margin:0 auto 18px;animation:cpulse 2s ease-in-out infinite}
+    @keyframes cpulse{0%,100%{box-shadow:0 0 0 0 rgba(0,212,170,.4)}50%{box-shadow:0 0 0 24px rgba(0,212,170,0)}}
+    .call-peer-name{font-family:'Space Grotesk',sans-serif;font-size:28px;font-weight:700;color:#fff;margin-bottom:6px}
+    .call-state{font-size:16px;color:#aaa}
+    #video-wrap{display:none;position:relative;width:min(640px,90vw);aspect-ratio:16/9;border-radius:18px;overflow:hidden;background:#000}
+    #remote-video{width:100%;height:100%;object-fit:cover}
+    #local-video{position:absolute;bottom:12px;right:12px;width:130px;border-radius:10px;border:2px solid #fff;object-fit:cover}
+    .call-controls{display:flex;gap:22px}
+    .cc-btn{width:60px;height:60px;border-radius:50%;border:none;font-size:22px;cursor:pointer;display:flex;align-items:center;justify-content:center;transition:all .2s}
+    .cc-btn:hover{transform:scale(1.1)}
+    .cc-btn.end{background:#e53935;color:#fff}
+    .cc-btn.toggle{background:#333;color:#fff}
+    #incoming-call{display:none;position:fixed;top:18px;right:18px;background:var(--bg-secondary);border:1px solid var(--border);border-radius:18px;padding:16px 18px;z-index:1001;box-shadow:var(--shadow);min-width:270px;animation:slideInRight .3s ease}
+    @keyframes slideInRight{from{transform:translateX(110%);opacity:0}to{transform:translateX(0);opacity:1}}
+    .inc-header{display:flex;align-items:center;gap:12px;margin-bottom:14px}
+    .inc-text h4{font-size:15px;font-weight:600;margin-bottom:2px}
+    .inc-text p{font-size:12.5px;color:var(--text-secondary)}
+    .inc-actions{display:flex;gap:10px}
+    .inc-accept,.inc-decline{flex:1;padding:10px;border:none;border-radius:11px;font-weight:600;font-size:13.5px;cursor:pointer;transition:opacity .2s}
+    .inc-accept{background:var(--online);color:#fff}
+    .inc-decline{background:var(--danger);color:#fff}
+    .inc-accept:hover,.inc-decline:hover{opacity:.85}
+    #img-modal{display:none;position:fixed;inset:0;background:rgba(0,0,0,.92);z-index:2000;align-items:center;justify-content:center;cursor:zoom-out}
+    #img-modal img{max-width:92vw;max-height:92vh;border-radius:10px;box-shadow:0 20px 60px rgba(0,0,0,.6)}
+    #toast-wrap{position:fixed;bottom:24px;left:50%;transform:translateX(-50%);z-index:3000;display:flex;flex-direction:column;gap:8px;align-items:center}
+    .toast{background:var(--bg-secondary);border:1px solid var(--border);border-radius:11px;padding:11px 18px;font-size:13.5px;color:var(--text-primary);box-shadow:var(--shadow);animation:toastIn .3s ease;white-space:nowrap}
+    .toast.ok{border-left:3px solid var(--accent)}
+    .toast.err{border-left:3px solid var(--danger)}
+    @keyframes toastIn{from{opacity:0;transform:translateY(8px)}to{opacity:1;transform:translateY(0)}}
+    @media(max-width:700px){
+      #sidebar{width:68px;min-width:68px}
+      .my-name,.my-tag,.sidebar-label,.friend-info,.friend-meta,.profile-text{display:none}
+      .auth-card{width:95%;padding:24px 20px}
+      #emoji-panel,#gif-panel{left:8px}
     }
   </style>
 </head>
 <body>
 
-<!-- ========================================================
-     AUTH SCREEN
-======================================================== -->
 <div id="auth-screen">
   <div class="auth-card">
     <div class="auth-logo">
@@ -966,15 +193,11 @@
       <h1>TrioTalk</h1>
       <p>A private space for three friends</p>
     </div>
-
     <div id="auth-err" class="error-box"></div>
-
     <div class="auth-tabs">
       <div class="auth-tab active" onclick="switchTab('email')">📧 Email</div>
       <div class="auth-tab" onclick="switchTab('phone')">📱 Phone OTP</div>
     </div>
-
-    <!-- Email / Password -->
     <div id="email-form" class="auth-form active">
       <div class="form-group">
         <label>Email Address</label>
@@ -987,13 +210,11 @@
       <button class="btn-primary" id="btn-login" onclick="emailLogin()">Sign In</button>
       <button class="btn-secondary" onclick="emailSignup()">Create Account</button>
     </div>
-
-    <!-- Phone OTP -->
     <div id="phone-form" class="auth-form">
       <div id="phone-step1">
         <div class="form-group">
           <label>Phone Number (with country code)</label>
-          <input type="tel" id="f-phone" placeholder="+1 555 000 0000">
+          <input type="tel" id="f-phone" placeholder="+91 98765 43210">
         </div>
         <div id="recaptcha-container"></div>
         <button class="btn-primary" id="btn-otp" onclick="sendOTP()">Send OTP</button>
@@ -1003,16 +224,13 @@
           <label>Enter the 6-digit OTP</label>
           <input type="number" id="f-otp" placeholder="123456" maxlength="6">
         </div>
-        <button class="btn-primary" id="btn-verify" onclick="verifyOTP()">Verify & Sign In</button>
-        <button class="btn-secondary" onclick="backToPhone()">← Change Number</button>
+        <button class="btn-primary" id="btn-verify" onclick="verifyOTP()">Verify &amp; Sign In</button>
+        <button class="btn-secondary" onclick="backToPhone()">&#8592; Change Number</button>
       </div>
     </div>
   </div>
 </div>
 
-<!-- ========================================================
-     USERNAME SCREEN
-======================================================== -->
 <div id="username-screen">
   <div class="auth-card">
     <div class="auth-logo">
@@ -1026,52 +244,38 @@
       <input type="text" id="f-username" placeholder="e.g. alex_99" maxlength="20"
         onkeydown="if(event.key==='Enter') saveUsername()">
     </div>
-    <button class="btn-primary" onclick="saveUsername()">Continue →</button>
+    <button class="btn-primary" onclick="saveUsername()">Continue &#8594;</button>
   </div>
 </div>
 
-<!-- ========================================================
-     MAIN APP
-======================================================== -->
 <div id="app-screen">
-
-  <!-- ===== SIDEBAR ===== -->
   <div id="sidebar">
     <div class="sidebar-header">
       <div class="my-profile">
         <div class="avatar" id="my-avatar" data-status="online">?</div>
         <div class="profile-text">
           <div class="my-name" id="my-name-label">Me</div>
-          <div class="my-tag">● Active</div>
+          <div class="my-tag">&#9679; Active</div>
         </div>
       </div>
       <div class="sidebar-actions">
-        <button class="icon-btn" id="theme-btn" onclick="toggleTheme()" title="Toggle dark/light mode">🌙</button>
+        <button class="icon-btn" id="theme-btn" onclick="toggleTheme()" title="Toggle theme">🌙</button>
         <button class="icon-btn" onclick="signOut()" title="Sign out">🚪</button>
       </div>
     </div>
-
     <div class="sidebar-label">Friends</div>
-
     <div class="friend-list" id="friend-list">
-      <div style="padding:12px;font-size:13px;color:var(--text-muted);">Loading friends…</div>
+      <div style="padding:12px;font-size:13px;color:var(--text-muted);">Loading friends...</div>
     </div>
   </div>
 
-  <!-- ===== CHAT AREA ===== -->
   <div id="chat-area">
-
-    <!-- Placeholder when no chat open -->
     <div id="no-chat">
       <div class="nc-icon">💬</div>
       <h3>TrioTalk</h3>
       <p>Select a friend to start chatting</p>
     </div>
-
-    <!-- Active chat window -->
     <div id="chat-window">
-
-      <!-- Header -->
       <div id="chat-header">
         <div class="avatar" id="ch-avatar">?</div>
         <div class="ch-info">
@@ -1083,14 +287,8 @@
           <button class="call-btn video" title="Video call" onclick="startCall('video')">🎥</button>
         </div>
       </div>
-
-      <!-- Messages -->
       <div id="messages-container"></div>
-
-      <!-- Typing bar -->
       <div id="typing-bar"></div>
-
-      <!-- Input -->
       <div id="input-area">
         <div style="display:flex;gap:6px;">
           <button class="tool-btn" title="Emoji" onclick="toggleEmoji(event)">😊</button>
@@ -1098,51 +296,35 @@
           <button class="tool-btn" title="Send image" onclick="document.getElementById('img-input').click()">📎</button>
           <input type="file" id="img-input" accept="image/*" style="display:none" onchange="uploadImage(event)">
         </div>
-
         <div id="input-wrap">
-          <textarea id="message-input" placeholder="Type a message…" rows="1"
-            oninput="onType()"
-            onkeydown="onInputKey(event)"></textarea>
+          <textarea id="message-input" placeholder="Type a message..." rows="1"
+            oninput="onType()" onkeydown="onInputKey(event)"></textarea>
         </div>
-
-        <button id="send-btn" onclick="sendMsg()" title="Send">➤</button>
+        <button id="send-btn" onclick="sendMsg()" title="Send">&#10148;</button>
       </div>
-
-    </div><!-- /chat-window -->
-
-    <!-- Emoji Picker -->
-    <div id="emoji-panel">
-      <emoji-picker id="ep"></emoji-picker>
     </div>
-
-    <!-- GIF Picker -->
+    <div id="emoji-panel"><emoji-picker id="ep"></emoji-picker></div>
     <div id="gif-panel">
       <div class="gif-search-bar">
-        <input type="text" id="gif-q" placeholder="🔍  Search GIFs…" oninput="onGifSearch()">
+        <input type="text" id="gif-q" placeholder="🔍 Search GIFs..." oninput="onGifSearch()">
       </div>
       <div class="gif-grid" id="gif-grid">
-        <div class="gif-empty">Loading trending GIFs…</div>
+        <div class="gif-empty">Loading trending GIFs...</div>
       </div>
     </div>
+  </div>
+</div>
 
-  </div><!-- /chat-area -->
-</div><!-- /app-screen -->
-
-<!-- ========================================================
-     CALL OVERLAY
-======================================================== -->
 <div id="call-overlay">
   <div class="call-info-box">
     <div class="call-avatar-big" id="call-av">?</div>
     <div class="call-peer-name" id="call-name">Friend</div>
-    <div class="call-state" id="call-state">Calling…</div>
+    <div class="call-state" id="call-state">Calling...</div>
   </div>
-
   <div id="video-wrap">
     <video id="remote-video" autoplay playsinline></video>
     <video id="local-video" autoplay muted playsinline></video>
   </div>
-
   <div class="call-controls">
     <button class="cc-btn toggle" id="btn-mute" onclick="toggleMute()" title="Mute">🎤</button>
     <button class="cc-btn end" onclick="endCall()" title="End call">📵</button>
@@ -1150,9 +332,6 @@
   </div>
 </div>
 
-<!-- ========================================================
-     INCOMING CALL
-======================================================== -->
 <div id="incoming-call">
   <div class="inc-header">
     <div class="avatar lg" id="inc-av">?</div>
@@ -1167,133 +346,85 @@
   </div>
 </div>
 
-<!-- Image Modal -->
 <div id="img-modal" onclick="this.style.display='none'">
   <img id="modal-img" src="" alt="Preview">
 </div>
-
-<!-- Toasts -->
 <div id="toast-wrap"></div>
 
-<!-- ========================================================
-     JAVASCRIPT
-======================================================== -->
 <script>
 "use strict";
 
-/* ============================================================
-   ⚠️  CONFIGURATION — REPLACE ALL "YOUR_..." VALUES BELOW ⚠️
-   
-   1. Create a Firebase project at https://console.firebase.google.com
-   2. Enable Authentication (Email/Password + Phone)
-   3. Enable Firestore Database
-   4. Enable Storage
-   5. Enable Cloud Messaging
-   6. Copy your web app's config here
-   7. Get a free GIPHY API key at https://developers.giphy.com
-   
-   For push notifications, also create a file called
-   "firebase-messaging-sw.js" in the same folder with:
-   ----------------------------------------------------------------
-   importScripts('https://www.gstatic.com/firebasejs/9.22.2/firebase-app-compat.js');
-   importScripts('https://www.gstatic.com/firebasejs/9.22.2/firebase-messaging-compat.js');
-   firebase.initializeApp({ ...your config... });
-   const messaging = firebase.messaging();
-   ----------------------------------------------------------------
-============================================================ */
-
-const firebaseConfig = {
-  apiKey: "AIzaSyBliLwAo40czO5H7i5qycAblARO8XgYIoA",
-  authDomain: "triotalk-96277.firebaseapp.com",
-  projectId: "triotalk-96277",
-  storageBucket: "triotalk-96277.firebasestorage.app",
+// ============================================================
+// YOUR FIREBASE CONFIG — Already filled in!
+// ============================================================
+const FIREBASE_CONFIG = {
+  apiKey:            "AIzaSyBliLwAo40czO5H7i5qycAblARO8XgYIoA",
+  authDomain:        "triotalk-96277.firebaseapp.com",
+  projectId:         "triotalk-96277",
+  storageBucket:     "triotalk-96277.firebasestorage.app",
   messagingSenderId: "908549997661",
-  appId: "1:908549997661:web:d7f9d044f937942c40b9b4",
-  measurementId: "G-5P3CHJGHNR"
+  appId:             "1:908549997661:web:d7f9d044f937942c40b9b4",
+  measurementId:     "G-5P3CHJGHNR"
 };
 
-// Get a free key → https://developers.giphy.com/dashboard/
+// Get a free key at https://developers.giphy.com
 const GIPHY_KEY = "YOUR_GIPHY_API_KEY";
 
-// FCM Web Push certificate (Firebase Console → Project Settings → Cloud Messaging)
+// FCM VAPID key from Firebase Console > Project Settings > Cloud Messaging
 const FCM_VAPID = "YOUR_VAPID_KEY";
 
-// Only these email addresses can access TrioTalk
-// Add your 3 friends' emails here:
+// Only these 3 emails can access TrioTalk
 const ALLOWED_EMAILS = [
-  "nandish2203@gmail.com",
   "ckarpita06@gmail.com",
-  "friend3@gmail.com"
+  "gadilingappapkkp@gmail.com",
+  "nandish2203@gmail.com"
 ];
 
-// Optionally also allow specific phone numbers (with country code):
 const ALLOWED_PHONES = [
-  "+10000000001",
-  "+10000000002",
-  "+10000000003"
+  "+918660969654",
+  "+919632491225",
+  "+917411059735"
 ];
 
-/* ============================================================
-   FIREBASE INIT
-============================================================ */
+// ============================================================
+// FIREBASE INIT
+// ============================================================
 firebase.initializeApp(FIREBASE_CONFIG);
 const auth    = firebase.auth();
 const db      = firebase.firestore();
 const storage = firebase.storage();
-
 let messaging = null;
 try { messaging = firebase.messaging(); } catch(e) {}
 
-/* ============================================================
-   APP STATE
-============================================================ */
-let me       = null;    // firebase.User
-let myName   = "";      // chosen username
-let chatWith = null;    // uid of open friend
-let chatName = "";      // name of open friend
-let unsubMsgs   = null;
-let unsubStatus = null;
-let unsubTyping = null;
-let typTimer    = null;
-let confirmRes  = null; // phone OTP confirmation
-
-// WebRTC
-let pc         = null;  // RTCPeerConnection
-let localMedia = null;  // MediaStream
-let callDocId  = null;
-let isCaller   = false;
-let callType   = "audio";
-let muted      = false;
-let camOff     = false;
+// ============================================================
+// APP STATE
+// ============================================================
+let me=null, myName="", chatWith=null, chatName="";
+let unsubMsgs=null, unsubStatus=null, unsubTyping=null;
+let typTimer=null, confirmRes=null;
+let pc=null, localMedia=null, callDocId=null;
+let isCaller=false, callType="audio", muted=false, camOff=false;
 
 const RTC_CFG = {
-  iceServers: [
-    { urls: "stun:stun.l.google.com:19302" },
-    { urls: "stun:stun1.l.google.com:19302" }
+  iceServers:[
+    {urls:"stun:stun.l.google.com:19302"},
+    {urls:"stun:stun1.l.google.com:19302"}
   ]
 };
 
-/* ============================================================
-   AUTH STATE — runs every time login state changes
-============================================================ */
+// ============================================================
+// AUTH STATE
+// ============================================================
 auth.onAuthStateChanged(async user => {
   if (!user) { showScreen("auth"); return; }
-
-  // ── Access check ──────────────────────────────────────────
   const email = user.email || "";
   const phone = user.phoneNumber || "";
-  const allowed = ALLOWED_EMAILS.includes(email) ||
-                  ALLOWED_PHONES.includes(phone);
-
+  const allowed = ALLOWED_EMAILS.includes(email) || ALLOWED_PHONES.includes(phone);
   if (!allowed) {
-    toast("🚫 Access denied — this app is invite-only.", "err");
-    await auth.signOut();
-    return;
+    toast("🚫 Access denied — invite only.", "err");
+    await auth.signOut(); return;
   }
-
   me = user;
-
-  // ── Check username ────────────────────────────────────────
   const snap = await db.collection("users").doc(me.uid).get();
   if (!snap.exists || !snap.data().username) {
     showScreen("username");
@@ -1303,2919 +434,570 @@ auth.onAuthStateChanged(async user => {
   }
 });
 
-/* ============================================================
-   AUTH — EMAIL / PASSWORD
-============================================================ */
+// ============================================================
+// AUTH — EMAIL
+// ============================================================
 function switchTab(tab) {
-  const tabs = document.querySelectorAll(".auth-tab");
-  tabs[0].classList.toggle("active", tab === "email");
-  tabs[1].classList.toggle("active", tab === "phone");
-  document.getElementById("email-form").classList.toggle("active", tab === "email");
-  document.getElementById("phone-form").classList.toggle("active", tab === "phone");
+  document.querySelectorAll(".auth-tab").forEach((t,i)=>
+    t.classList.toggle("active", (tab==="email"&&i===0)||(tab==="phone"&&i===1)));
+  el("email-form").classList.toggle("active", tab==="email");
+  el("phone-form").classList.toggle("active", tab==="phone");
   clearErr("auth-err");
 }
 
 async function emailLogin() {
-  const email = v("f-email"), pass = v("f-pass");
-  if (!email || !pass) return setErr("auth-err", "Please fill in all fields.");
-  setLoading("btn-login", true);
+  const email=v("f-email"), pass=v("f-pass");
+  if (!email||!pass) return setErr("auth-err","Please fill in all fields.");
+  setLoading("btn-login",true);
   try {
     await auth.signInWithEmailAndPassword(email, pass);
   } catch(e) {
     setErr("auth-err", authMsg(e));
-    setLoading("btn-login", false);
+    setLoading("btn-login",false);
   }
 }
 
 async function emailSignup() {
-  const email = v("f-email"), pass = v("f-pass");
-  if (!email || !pass) return setErr("auth-err", "Please fill in all fields.");
-  if (!ALLOWED_EMAILS.includes(email))
-    return setErr("auth-err", "This email is not on the allowed list.");
-  if (pass.length < 6)
-    return setErr("auth-err", "Password must be at least 6 characters.");
+  const email=v("f-email"), pass=v("f-pass");
+  if (!email||!pass) return setErr("auth-err","Please fill in all fields.");
+  if (!ALLOWED_EMAILS.includes(email)) return setErr("auth-err","This email is not allowed.");
+  if (pass.length<6) return setErr("auth-err","Password must be at least 6 characters.");
   try {
     await auth.createUserWithEmailAndPassword(email, pass);
-  } catch(e) {
-    setErr("auth-err", authMsg(e));
-  }
+  } catch(e) { setErr("auth-err", authMsg(e)); }
 }
 
-/* ============================================================
-   AUTH — PHONE OTP
-============================================================ */
+// ============================================================
+// AUTH — PHONE OTP
+// ============================================================
 async function sendOTP() {
-  const phone = v("f-phone");
-  if (!phone) return setErr("auth-err", "Enter your phone number.");
-  setLoading("btn-otp", true);
+  const phone=v("f-phone");
+  if (!phone) return setErr("auth-err","Enter your phone number.");
+  setLoading("btn-otp",true);
   try {
     if (!window.recapVerifier) {
       window.recapVerifier = new firebase.auth.RecaptchaVerifier(
-        "recaptcha-container", { size: "invisible" }
-      );
+        "recaptcha-container",{size:"invisible"});
     }
     confirmRes = await auth.signInWithPhoneNumber(phone, window.recapVerifier);
-    document.getElementById("phone-step1").style.display = "none";
-    document.getElementById("phone-step2").style.display = "block";
-    toast("OTP sent! Check your messages.", "ok");
+    el("phone-step1").style.display="none";
+    el("phone-step2").style.display="block";
+    toast("OTP sent! Check your messages.","ok");
   } catch(e) {
     setErr("auth-err", authMsg(e));
-    setLoading("btn-otp", false);
-    if (window.recapVerifier) {
-      window.recapVerifier.clear();
-      window.recapVerifier = null;
-    }
+    setLoading("btn-otp",false);
+    if (window.recapVerifier){window.recapVerifier.clear();window.recapVerifier=null;}
   }
 }
 
 async function verifyOTP() {
-  const otp = v("f-otp");
-  if (!otp) return setErr("auth-err", "Enter the OTP.");
-  setLoading("btn-verify", true);
-  try {
-    await confirmRes.confirm(otp);
-  } catch(e) {
-    setErr("auth-err", "Invalid OTP. Please try again.");
-    setLoading("btn-verify", false);
-  }
+  const otp=v("f-otp");
+  if (!otp) return setErr("auth-err","Enter the OTP.");
+  setLoading("btn-verify",true);
+  try { await confirmRes.confirm(otp); }
+  catch(e){setErr("auth-err","Invalid OTP.");setLoading("btn-verify",false);}
 }
 
 function backToPhone() {
-  document.getElementById("phone-step1").style.display = "block";
-  document.getElementById("phone-step2").style.display = "none";
-  confirmRes = null;
+  el("phone-step1").style.display="block";
+  el("phone-step2").style.display="none";
+  confirmRes=null;
 }
 
-/* ============================================================
-   USERNAME SELECTION
-============================================================ */
+// ============================================================
+// USERNAME
+// ============================================================
 async function saveUsername() {
-  const name = v("f-username").trim();
-  if (name.length < 2)    return setErr("uname-err", "Minimum 2 characters.");
-  if (!/^\w+$/.test(name)) return setErr("uname-err", "Letters, numbers and _ only.");
-
-  // Unique check
+  const name=v("f-username").trim();
+  if (name.length<2) return setErr("uname-err","Minimum 2 characters.");
+  if (!/^\w+$/.test(name)) return setErr("uname-err","Letters, numbers and _ only.");
   const dup = await db.collection("users").where("username","==",name).get();
-  if (!dup.empty) return setErr("uname-err", "Username taken — try another.");
-
+  if (!dup.empty) return setErr("uname-err","Username taken — try another.");
   await db.collection("users").doc(me.uid).set({
-    uid:       me.uid,
-    username:  name,
-    email:     me.email || "",
-    phone:     me.phoneNumber || "",
-    online:    true,
-    lastSeen:  firebase.firestore.FieldValue.serverTimestamp(),
-    createdAt: firebase.firestore.FieldValue.serverTimestamp()
+    uid:me.uid, username:name, email:me.email||"",
+    phone:me.phoneNumber||"", online:true,
+    lastSeen:firebase.firestore.FieldValue.serverTimestamp(),
+    createdAt:firebase.firestore.FieldValue.serverTimestamp()
   });
-
-  myName = name;
-  bootApp();
+  myName=name; bootApp();
 }
 
-/* ============================================================
-   BOOT APP — runs after login + username confirmed
-============================================================ */
+// ============================================================
+// BOOT APP
+// ============================================================
 async function bootApp() {
   showScreen("app");
-
-  // Online presence
   await setPresence(true);
-  window.addEventListener("beforeunload", () => setPresence(false));
-  document.addEventListener("visibilitychange", () => {
-    setPresence(!document.hidden);
-  });
-
-  // Update sidebar profile
+  window.addEventListener("beforeunload", ()=>setPresence(false));
+  document.addEventListener("visibilitychange", ()=>setPresence(!document.hidden));
   el("my-name-label").textContent = myName;
   el("my-avatar").textContent = myName[0].toUpperCase();
-
-  // Emoji picker event
-  el("ep").addEventListener("emoji-click", e => insertEmoji(e.detail.unicode));
-
-  // Close popups on outside click
+  el("ep").addEventListener("emoji-click", e=>insertEmoji(e.detail.unicode));
   document.addEventListener("click", outsideClick);
-
-  // Load friends list (live)
   listenFriends();
-
-  // Listen for incoming calls
   listenIncomingCalls();
-
-  // Push notifications
   setupFCM();
-
-  // Load trending GIFs in background
   loadGIFs("trending");
 }
 
-/* ============================================================
-   PRESENCE
-============================================================ */
+// ============================================================
+// PRESENCE
+// ============================================================
 async function setPresence(online) {
   if (!me) return;
   await db.collection("users").doc(me.uid).update({
-    online:   online,
-    lastSeen: firebase.firestore.FieldValue.serverTimestamp()
-  }).catch(() => {});
+    online, lastSeen:firebase.firestore.FieldValue.serverTimestamp()
+  }).catch(()=>{});
 }
 
-/* ============================================================
-   FRIENDS LIST (live listener)
-============================================================ */
+// ============================================================
+// FRIENDS LIST
+// ============================================================
 function listenFriends() {
   db.collection("users").onSnapshot(snap => {
-    const list = el("friend-list");
-    list.innerHTML = "";
-    let found = 0;
-
+    const list=el("friend-list");
+    list.innerHTML="";
+    let found=0;
     snap.forEach(doc => {
-      if (doc.id === me.uid) return; // skip self
+      if (doc.id===me.uid) return;
       found++;
-      const f = doc.data();
-      const online = f.online === true;
-
-      const div = document.createElement("div");
-      div.className = "friend-item" + (doc.id === chatWith ? " active" : "");
-      div.id = "fi-" + doc.id;
-      div.onclick = () => openChat(doc.id, f.username);
-      div.innerHTML = `
+      const f=doc.data();
+      const online=f.online===true;
+      const div=document.createElement("div");
+      div.className="friend-item"+(doc.id===chatWith?" active":"");
+      div.id="fi-"+doc.id;
+      div.onclick=()=>openChat(doc.id,f.username);
+      div.innerHTML=`
         <div class="friend-avatar-wrap">
           <div class="avatar" data-status="${online?"online":"offline"}">${f.username[0].toUpperCase()}</div>
         </div>
         <div class="friend-info">
           <div class="friend-name">${esc(f.username)}</div>
-          <div class="friend-preview" id="fp-${doc.id}">Tap to chat</div>
+          <div class="friend-preview">Tap to chat</div>
         </div>
         <div class="friend-meta">
-          <div class="friend-time" id="ft-${doc.id}"></div>
-          ${online ? '<div class="online-dot"></div>' : ''}
+          ${online?'<div class="online-dot"></div>':''}
         </div>`;
       list.appendChild(div);
     });
-
-    if (!found) {
-      list.innerHTML = '<div style="padding:14px;font-size:13px;color:var(--text-muted);">Waiting for friends to join…</div>';
-    }
+    if (!found) list.innerHTML='<div style="padding:14px;font-size:13px;color:var(--text-muted);">Waiting for friends to join...</div>';
   });
 }
 
-/* ============================================================
-   OPEN CHAT
-============================================================ */
-function openChat(uid, name) {
-  // Cleanup previous listeners
-  if (unsubMsgs)   unsubMsgs();
+// ============================================================
+// OPEN CHAT
+// ============================================================
+function openChat(uid,name) {
+  if (unsubMsgs) unsubMsgs();
   if (unsubStatus) unsubStatus();
   if (unsubTyping) unsubTyping();
-
-  chatWith = uid;
-  chatName = name;
-
-  // Show chat window
-  el("no-chat").style.display   = "none";
-  el("chat-window").style.display = "flex";
-  el("messages-container").innerHTML = "";
-  el("typing-bar").innerHTML = "";
-
-  // Update header
-  el("ch-avatar").textContent = name[0].toUpperCase();
-  el("ch-name").textContent   = name;
-  el("ch-status").textContent  = "…";
-  el("ch-status").className    = "ch-status";
-
-  // Highlight in sidebar
-  document.querySelectorAll(".friend-item").forEach(fi => fi.classList.remove("active"));
-  const fi = el("fi-" + uid);
+  chatWith=uid; chatName=name;
+  el("no-chat").style.display="none";
+  el("chat-window").style.display="flex";
+  el("messages-container").innerHTML="";
+  el("typing-bar").innerHTML="";
+  el("ch-avatar").textContent=name[0].toUpperCase();
+  el("ch-name").textContent=name;
+  el("ch-status").textContent="...";
+  el("ch-status").className="ch-status";
+  document.querySelectorAll(".friend-item").forEach(fi=>fi.classList.remove("active"));
+  const fi=el("fi-"+uid);
   if (fi) fi.classList.add("active");
-
-  // Start listeners
-  listenMessages();
-  listenFriendOnline();
-  listenFriendTyping();
+  listenMessages(); listenFriendOnline(); listenFriendTyping();
 }
 
-/* ============================================================
-   MESSAGES — Firestore real-time listener
-============================================================ */
-function chatId(a, b) { return [a, b].sort().join("_"); }
+// ============================================================
+// MESSAGES
+// ============================================================
+function chatId(a,b){return [a,b].sort().join("_");}
 
 function listenMessages() {
-  const cid = chatId(me.uid, chatWith);
-  unsubMsgs = db.collection("chats").doc(cid)
-    .collection("messages")
+  const cid=chatId(me.uid,chatWith);
+  unsubMsgs=db.collection("chats").doc(cid).collection("messages")
     .orderBy("timestamp","asc")
-    .onSnapshot(snap => {
-      snap.docChanges().forEach(ch => {
-        if (ch.type === "added") renderMsg(ch.doc.data());
-      });
+    .onSnapshot(snap=>{
+      snap.docChanges().forEach(ch=>{if(ch.type==="added") renderMsg(ch.doc.data());});
       scrollBottom();
     });
 }
 
 function renderMsg(msg) {
-  const mc = el("messages-container");
-  const sent = msg.senderUid === me.uid;
-  const t = msg.timestamp ? fmtTime(msg.timestamp.toDate()) : "";
-
-  const row = document.createElement("div");
-  row.className = "msg-row " + (sent ? "sent" : "received");
-
-  let inner = "";
-  if (msg.type === "text") {
-    inner = `<div class="bubble">${esc(msg.text)}<span class="msg-time">${t}</span></div>`;
-  } else if (msg.type === "image") {
-    inner = `<div class="bubble img-bubble">
-      <img src="${msg.url}" alt="Image" onclick="openImg('${msg.url}')">
-      <span class="msg-time">${t}</span>
-    </div>`;
-  } else if (msg.type === "gif") {
-    inner = `<div class="bubble img-bubble">
-      <img src="${msg.url}" alt="GIF">
-      <span class="msg-time">${t}</span>
-    </div>`;
+  const mc=el("messages-container");
+  const sent=msg.senderUid===me.uid;
+  const t=msg.timestamp?fmtTime(msg.timestamp.toDate()):"";
+  const row=document.createElement("div");
+  row.className="msg-row "+(sent?"sent":"received");
+  let inner="";
+  if (msg.type==="text") {
+    inner=`<div class="bubble">${esc(msg.text)}<span class="msg-time">${t}</span></div>`;
+  } else if (msg.type==="image") {
+    inner=`<div class="bubble img-bubble"><img src="${msg.url}" alt="Image" onclick="openImg('${msg.url}')"><span class="msg-time">${t}</span></div>`;
+  } else if (msg.type==="gif") {
+    inner=`<div class="bubble img-bubble"><img src="${msg.url}" alt="GIF"><span class="msg-time">${t}</span></div>`;
   }
-
-  row.innerHTML = inner;
-  mc.appendChild(row);
+  row.innerHTML=inner; mc.appendChild(row);
 }
 
 async function sendMsg() {
-  const input = el("message-input");
-  const text  = input.value.trim();
-  if (!text || !chatWith) return;
-
-  input.value = "";
-  autoResize();
-
-  const cid = chatId(me.uid, chatWith);
+  const input=el("message-input");
+  const text=input.value.trim();
+  if (!text||!chatWith) return;
+  input.value=""; autoResize();
+  const cid=chatId(me.uid,chatWith);
   await db.collection("chats").doc(cid).collection("messages").add({
-    senderUid:  me.uid,
-    senderName: myName,
-    type:       "text",
-    text:       text,
-    timestamp:  firebase.firestore.FieldValue.serverTimestamp()
+    senderUid:me.uid, senderName:myName, type:"text",
+    text, timestamp:firebase.firestore.FieldValue.serverTimestamp()
   });
   await db.collection("chats").doc(cid).set({
-    lastMsg:   text,
-    lastTs:    firebase.firestore.FieldValue.serverTimestamp(),
-    members:   [me.uid, chatWith]
-  }, { merge: true });
-
+    lastMsg:text, lastTs:firebase.firestore.FieldValue.serverTimestamp(),
+    members:[me.uid,chatWith]
+  },{merge:true});
   await clearTyping();
 }
 
-async function sendMedia(type, url) {
-  const cid = chatId(me.uid, chatWith);
+async function sendMedia(type,url) {
+  const cid=chatId(me.uid,chatWith);
   await db.collection("chats").doc(cid).collection("messages").add({
-    senderUid:  me.uid,
-    senderName: myName,
-    type:       type,
-    url:        url,
-    timestamp:  firebase.firestore.FieldValue.serverTimestamp()
+    senderUid:me.uid, senderName:myName, type, url,
+    timestamp:firebase.firestore.FieldValue.serverTimestamp()
   });
 }
 
-/* ============================================================
-   TYPING INDICATOR
-============================================================ */
+// ============================================================
+// TYPING
+// ============================================================
 async function onType() {
   autoResize();
   if (!chatWith) return;
-  const cid = chatId(me.uid, chatWith);
+  const cid=chatId(me.uid,chatWith);
   await db.collection("chats").doc(cid).collection("typing")
-    .doc(me.uid).set({ isTyping: true, ts: firebase.firestore.FieldValue.serverTimestamp() });
+    .doc(me.uid).set({isTyping:true,ts:firebase.firestore.FieldValue.serverTimestamp()});
   clearTimeout(typTimer);
-  typTimer = setTimeout(clearTyping, 3000);
+  typTimer=setTimeout(clearTyping,3000);
 }
 
 async function clearTyping() {
-  if (!me || !chatWith) return;
-  const cid = chatId(me.uid, chatWith);
+  if (!me||!chatWith) return;
+  const cid=chatId(me.uid,chatWith);
   await db.collection("chats").doc(cid).collection("typing")
-    .doc(me.uid).set({ isTyping: false }).catch(() => {});
+    .doc(me.uid).set({isTyping:false}).catch(()=>{});
 }
 
 function listenFriendOnline() {
-  unsubStatus = db.collection("users").doc(chatWith).onSnapshot(snap => {
+  unsubStatus=db.collection("users").doc(chatWith).onSnapshot(snap=>{
     if (!snap.exists) return;
-    const d = snap.data();
-    const s = el("ch-status");
-    if (d.online) {
-      s.textContent = "● Online";
-      s.className   = "ch-status online";
-    } else {
-      const ago = d.lastSeen ? "Last seen " + timeAgo(d.lastSeen.toDate()) : "Offline";
-      s.textContent = ago;
-      s.className   = "ch-status";
-    }
+    const d=snap.data(); const s=el("ch-status");
+    if (d.online) {s.textContent="● Online";s.className="ch-status online";}
+    else {s.textContent=d.lastSeen?"Last seen "+timeAgo(d.lastSeen.toDate()):"Offline";s.className="ch-status";}
   });
 }
 
 function listenFriendTyping() {
-  const cid = chatId(me.uid, chatWith);
-  unsubTyping = db.collection("chats").doc(cid)
-    .collection("typing").doc(chatWith)
-    .onSnapshot(snap => {
-      const tb = el("typing-bar");
-      if (snap.exists && snap.data().isTyping) {
-        tb.innerHTML = `
-          <div class="typing-dots">
-            <div class="typing-dot"></div>
-            <div class="typing-dot"></div>
-            <div class="typing-dot"></div>
-          </div>
-          <span>${esc(chatName)} is typing…</span>`;
-      } else {
-        tb.innerHTML = "";
-      }
+  const cid=chatId(me.uid,chatWith);
+  unsubTyping=db.collection("chats").doc(cid).collection("typing").doc(chatWith)
+    .onSnapshot(snap=>{
+      const tb=el("typing-bar");
+      if (snap.exists&&snap.data().isTyping) {
+        tb.innerHTML=`<div class="typing-dots"><div class="typing-dot"></div><div class="typing-dot"></div><div class="typing-dot"></div></div><span>${esc(chatName)} is typing...</span>`;
+      } else { tb.innerHTML=""; }
     });
 }
 
-/* ============================================================
-   EMOJI PICKER
-============================================================ */
+// ============================================================
+// EMOJI
+// ============================================================
 function toggleEmoji(e) {
   e.stopPropagation();
-  const panel = el("emoji-panel");
-  const gif   = el("gif-panel");
-  gif.style.display = "none";
-  panel.style.display = panel.style.display === "block" ? "none" : "block";
+  const panel=el("emoji-panel"); const gif=el("gif-panel");
+  gif.style.display="none";
+  panel.style.display=panel.style.display==="block"?"none":"block";
 }
 
 function insertEmoji(uni) {
-  const inp = el("message-input");
-  const pos = inp.selectionStart || 0;
-  inp.value = inp.value.slice(0, pos) + uni + inp.value.slice(pos);
-  inp.focus();
-  inp.selectionStart = inp.selectionEnd = pos + uni.length;
-  el("emoji-panel").style.display = "none";
+  const inp=el("message-input"); const pos=inp.selectionStart||0;
+  inp.value=inp.value.slice(0,pos)+uni+inp.value.slice(pos);
+  inp.focus(); inp.selectionStart=inp.selectionEnd=pos+uni.length;
+  el("emoji-panel").style.display="none";
 }
 
-/* ============================================================
-   GIF PICKER — GIPHY API
-============================================================ */
+// ============================================================
+// GIF
+// ============================================================
 function toggleGif(e) {
   e.stopPropagation();
-  const panel = el("gif-panel");
-  const emoji = el("emoji-panel");
-  emoji.style.display = "none";
-  panel.style.display = panel.style.display === "flex" ? "none" : "flex";
+  const panel=el("gif-panel"); const emoji=el("emoji-panel");
+  emoji.style.display="none";
+  panel.style.display=panel.style.display==="flex"?"none":"flex";
 }
 
 let gifTimer;
 function onGifSearch() {
   clearTimeout(gifTimer);
-  const q = el("gif-q").value.trim();
-  gifTimer = setTimeout(() => loadGIFs(q || "trending", q), 400);
+  const q=el("gif-q").value.trim();
+  gifTimer=setTimeout(()=>loadGIFs(q||"trending",q),400);
 }
 
-async function loadGIFs(mode, query) {
-  const grid = el("gif-grid");
-  grid.innerHTML = '<div class="gif-empty">Loading…</div>';
-
-  let url;
-  if (mode === "trending") {
-    url = `https://api.giphy.com/v1/gifs/trending?api_key=${GIPHY_KEY}&limit=20&rating=g`;
-  } else {
-    url = `https://api.giphy.com/v1/gifs/search?api_key=${GIPHY_KEY}&q=${encodeURIComponent(query)}&limit=20&rating=g`;
-  }
-
+async function loadGIFs(mode,query) {
+  const grid=el("gif-grid");
+  grid.innerHTML='<div class="gif-empty">Loading...</div>';
+  const url=mode==="trending"
+    ?`https://api.giphy.com/v1/gifs/trending?api_key=${GIPHY_KEY}&limit=20&rating=g`
+    :`https://api.giphy.com/v1/gifs/search?api_key=${GIPHY_KEY}&q=${encodeURIComponent(query)}&limit=20&rating=g`;
   try {
-    const res  = await fetch(url);
-    const data = await res.json();
-    if (!data.data?.length) {
-      grid.innerHTML = '<div class="gif-empty">No GIFs found.</div>';
-      return;
-    }
-    grid.innerHTML = "";
-    data.data.forEach(gif => {
-      const card = document.createElement("div");
-      card.className = "gif-card";
-      card.innerHTML = `<img src="${gif.images.fixed_height_small.url}" loading="lazy" alt="gif">`;
-      card.onclick = () => pickGif(gif.images.original.url);
+    const res=await fetch(url); const data=await res.json();
+    if (!data.data?.length){grid.innerHTML='<div class="gif-empty">No GIFs found.</div>';return;}
+    grid.innerHTML="";
+    data.data.forEach(gif=>{
+      const card=document.createElement("div");
+      card.className="gif-card";
+      card.innerHTML=`<img src="${gif.images.fixed_height_small.url}" loading="lazy" alt="gif">`;
+      card.onclick=()=>pickGif(gif.images.original.url);
       grid.appendChild(card);
     });
-  } catch(_) {
-    grid.innerHTML = '<div class="gif-empty">⚠️ Set a valid GIPHY API key in the config.</div>';
-  }
+  } catch(_){grid.innerHTML='<div class="gif-empty">Add a GIPHY API key to use GIFs.</div>';}
 }
 
 function pickGif(url) {
-  if (!chatWith) { toast("Open a chat first!", "err"); return; }
-  sendMedia("gif", url);
-  el("gif-panel").style.display = "none";
+  if (!chatWith){toast("Open a chat first!","err");return;}
+  sendMedia("gif",url); el("gif-panel").style.display="none";
 }
 
-/* ============================================================
-   IMAGE UPLOAD — Firebase Storage
-============================================================ */
+// ============================================================
+// IMAGE UPLOAD
+// ============================================================
 async function uploadImage(e) {
-  const file = e.target.files[0];
-  if (!file || !chatWith) return;
-  if (file.size > 10 * 1024 * 1024) { toast("Image too large (max 10 MB).", "err"); return; }
-
-  toast("📤 Uploading…", "ok");
+  const file=e.target.files[0];
+  if (!file||!chatWith) return;
+  if (file.size>10*1024*1024){toast("Image too large (max 10 MB).","err");return;}
+  toast("📤 Uploading...","ok");
   try {
-    const ref  = storage.ref(`chat_images/${me.uid}_${Date.now()}_${file.name}`);
+    const ref=storage.ref(`chat_images/${me.uid}_${Date.now()}_${file.name}`);
     await ref.put(file);
-    const url  = await ref.getDownloadURL();
-    await sendMedia("image", url);
-    toast("✅ Image sent!", "ok");
-  } catch(err) {
-    toast("Upload failed: " + err.message, "err");
-  }
-  e.target.value = "";
+    const url=await ref.getDownloadURL();
+    await sendMedia("image",url); toast("✅ Image sent!","ok");
+  } catch(err){toast("Upload failed: "+err.message,"err");}
+  e.target.value="";
 }
 
-/* ============================================================
-   WEBRTC — AUDIO / VIDEO CALLS
-============================================================ */
+// ============================================================
+// WEBRTC CALLS
+// ============================================================
 async function startCall(type) {
-  if (!chatWith) { toast("Open a chat to call.", "err"); return; }
-
-  callType    = type;
-  isCaller    = true;
-  muted       = false;
-  camOff      = false;
-
+  if (!chatWith){toast("Open a chat to call.","err");return;}
+  callType=type; isCaller=true; muted=false; camOff=false;
   try {
-    localMedia = await navigator.mediaDevices.getUserMedia({
-      audio: true,
-      video: type === "video"
-    });
-    showCallUI(chatName, "Calling…", type);
-    if (type === "video") el("local-video").srcObject = localMedia;
-
-    pc = new RTCPeerConnection(RTC_CFG);
-    localMedia.getTracks().forEach(t => pc.addTrack(t, localMedia));
-
-    pc.ontrack = ev => { el("remote-video").srcObject = ev.streams[0]; };
-
-    const offer = await pc.createOffer();
+    localMedia=await navigator.mediaDevices.getUserMedia({audio:true,video:type==="video"});
+    showCallUI(chatName,"Calling...",type);
+    if (type==="video") el("local-video").srcObject=localMedia;
+    pc=new RTCPeerConnection(RTC_CFG);
+    localMedia.getTracks().forEach(t=>pc.addTrack(t,localMedia));
+    pc.ontrack=ev=>{el("remote-video").srcObject=ev.streams[0];};
+    const offer=await pc.createOffer();
     await pc.setLocalDescription(offer);
-
-    const ref = await db.collection("calls").add({
-      callType:    type,
-      callerUid:   me.uid,
-      callerName:  myName,
-      calleeUid:   chatWith,
-      status:      "ringing",
-      offer:       { sdp: offer.sdp, type: offer.type },
-      createdAt:   firebase.firestore.FieldValue.serverTimestamp()
+    const ref=await db.collection("calls").add({
+      callType:type, callerUid:me.uid, callerName:myName,
+      calleeUid:chatWith, status:"ringing",
+      offer:{sdp:offer.sdp,type:offer.type},
+      createdAt:firebase.firestore.FieldValue.serverTimestamp()
     });
-    callDocId = ref.id;
-
-    pc.onicecandidate = async ev => {
+    callDocId=ref.id;
+    pc.onicecandidate=async ev=>{
       if (ev.candidate)
-        await db.collection("calls").doc(callDocId)
-          .collection("callerCandidates").add(ev.candidate.toJSON());
+        await db.collection("calls").doc(callDocId).collection("callerCandidates").add(ev.candidate.toJSON());
     };
-
-    // Watch for answer
-    db.collection("calls").doc(callDocId).onSnapshot(async snap => {
-      const d = snap.data();
-      if (!d) return;
-      if (!pc.currentRemoteDescription && d.answer) {
+    db.collection("calls").doc(callDocId).onSnapshot(async snap=>{
+      const d=snap.data(); if (!d) return;
+      if (!pc.currentRemoteDescription&&d.answer)
         await pc.setRemoteDescription(new RTCSessionDescription(d.answer));
-        el("call-state").textContent = "🟢 Connected";
-      }
-      if (d.status === "declined") { toast("Call declined.", "err"); endCall(); }
-      if (d.status === "ended")    { endCall(); }
+      if (d.status==="declined"){toast("Call declined.","err");endCall();}
+      if (d.status==="ended") endCall();
     });
-
-    db.collection("calls").doc(callDocId)
-      .collection("calleeCandidates").onSnapshot(snap => {
-        snap.docChanges().forEach(async ch => {
-          if (ch.type === "added")
-            await pc.addIceCandidate(new RTCIceCandidate(ch.doc.data()));
-        });
+    db.collection("calls").doc(callDocId).collection("calleeCandidates").onSnapshot(snap=>{
+      snap.docChanges().forEach(async ch=>{
+        if (ch.type==="added") await pc.addIceCandidate(new RTCIceCandidate(ch.doc.data()));
       });
-
-  } catch(err) {
-    toast("Could not start call: " + err.message, "err");
-    endCall();
-  }
+    });
+  } catch(err){toast("Could not start call: "+err.message,"err");endCall();}
 }
 
 async function acceptCall() {
-  el("incoming-call").style.display = "none";
-  isCaller = false;
-  muted    = false;
-  camOff   = false;
-
+  el("incoming-call").style.display="none";
+  isCaller=false; muted=false; camOff=false;
   try {
-    localMedia = await navigator.mediaDevices.getUserMedia({
-      audio: true,
-      video: callType === "video"
-    });
-    const callerName = el("inc-name").textContent;
-    showCallUI(callerName, "Connecting…", callType);
-    if (callType === "video") el("local-video").srcObject = localMedia;
-
-    pc = new RTCPeerConnection(RTC_CFG);
-    localMedia.getTracks().forEach(t => pc.addTrack(t, localMedia));
-    pc.ontrack = ev => { el("remote-video").srcObject = ev.streams[0]; };
-
-    const callSnap = await db.collection("calls").doc(callDocId).get();
-    const offer    = callSnap.data().offer;
+    localMedia=await navigator.mediaDevices.getUserMedia({audio:true,video:callType==="video"});
+    const callerName=el("inc-name").textContent;
+    showCallUI(callerName,"Connecting...",callType);
+    if (callType==="video") el("local-video").srcObject=localMedia;
+    pc=new RTCPeerConnection(RTC_CFG);
+    localMedia.getTracks().forEach(t=>pc.addTrack(t,localMedia));
+    pc.ontrack=ev=>{el("remote-video").srcObject=ev.streams[0];};
+    const callSnap=await db.collection("calls").doc(callDocId).get();
+    const offer=callSnap.data().offer;
     await pc.setRemoteDescription(new RTCSessionDescription(offer));
-
-    const answer = await pc.createAnswer();
+    const answer=await pc.createAnswer();
     await pc.setLocalDescription(answer);
-
     await db.collection("calls").doc(callDocId).update({
-      answer: { sdp: answer.sdp, type: answer.type },
-      status: "connected"
+      answer:{sdp:answer.sdp,type:answer.type},status:"connected"
     });
-
-    pc.onicecandidate = async ev => {
+    pc.onicecandidate=async ev=>{
       if (ev.candidate)
-        await db.collection("calls").doc(callDocId)
-          .collection("calleeCandidates").add(ev.candidate.toJSON());
+        await db.collection("calls").doc(callDocId).collection("calleeCandidates").add(ev.candidate.toJSON());
     };
-
-    db.collection("calls").doc(callDocId)
-      .collection("callerCandidates").onSnapshot(snap => {
-        snap.docChanges().forEach(async ch => {
-          if (ch.type === "added")
-            await pc.addIceCandidate(new RTCIceCandidate(ch.doc.data()));
-        });
+    db.collection("calls").doc(callDocId).collection("callerCandidates").onSnapshot(snap=>{
+      snap.docChanges().forEach(async ch=>{
+        if (ch.type==="added") await pc.addIceCandidate(new RTCIceCandidate(ch.doc.data()));
       });
-
-    db.collection("calls").doc(callDocId).onSnapshot(snap => {
-      if (snap.data()?.status === "ended") endCall();
     });
-
-    el("call-state").textContent = "🟢 Connected";
-  } catch(err) {
-    toast("Could not connect: " + err.message, "err");
-    endCall();
-  }
+    db.collection("calls").doc(callDocId).onSnapshot(snap=>{if(snap.data()?.status==="ended") endCall();});
+    el("call-state").textContent="🟢 Connected";
+  } catch(err){toast("Could not connect: "+err.message,"err");endCall();}
 }
 
 async function declineCall() {
-  el("incoming-call").style.display = "none";
-  if (callDocId)
-    await db.collection("calls").doc(callDocId).update({ status: "declined" }).catch(() => {});
-  callDocId = null;
+  el("incoming-call").style.display="none";
+  if (callDocId) await db.collection("calls").doc(callDocId).update({status:"declined"}).catch(()=>{});
+  callDocId=null;
 }
 
 async function endCall() {
-  if (pc)         { pc.close(); pc = null; }
-  if (localMedia) { localMedia.getTracks().forEach(t => t.stop()); localMedia = null; }
-  if (callDocId)  {
-    await db.collection("calls").doc(callDocId).update({ status: "ended" }).catch(() => {});
-    callDocId = null;
-  }
-  el("call-overlay").style.display = "none";
-  el("video-wrap").style.display   = "none";
-  el("remote-video").srcObject     = null;
-  el("local-video").srcObject      = null;
+  if (pc){pc.close();pc=null;}
+  if (localMedia){localMedia.getTracks().forEach(t=>t.stop());localMedia=null;}
+  if (callDocId){await db.collection("calls").doc(callDocId).update({status:"ended"}).catch(()=>{});callDocId=null;}
+  el("call-overlay").style.display="none";
+  el("video-wrap").style.display="none";
+  el("remote-video").srcObject=null;
+  el("local-video").srcObject=null;
 }
 
-function showCallUI(name, state, type) {
-  el("call-av").textContent       = name[0].toUpperCase();
-  el("call-name").textContent     = name;
-  el("call-state").textContent    = state;
-  el("call-overlay").style.display = "flex";
-  if (type === "video") el("video-wrap").style.display = "block";
+function showCallUI(name,state,type) {
+  el("call-av").textContent=name[0].toUpperCase();
+  el("call-name").textContent=name;
+  el("call-state").textContent=state;
+  el("call-overlay").style.display="flex";
+  if (type==="video") el("video-wrap").style.display="block";
 }
 
 function toggleMute() {
   if (!localMedia) return;
-  muted = !muted;
-  localMedia.getAudioTracks().forEach(t => t.enabled = !muted);
-  el("btn-mute").textContent = muted ? "🔇" : "🎤";
+  muted=!muted;
+  localMedia.getAudioTracks().forEach(t=>t.enabled=!muted);
+  el("btn-mute").textContent=muted?"🔇":"🎤";
 }
 
 function toggleCam() {
   if (!localMedia) return;
-  camOff = !camOff;
-  localMedia.getVideoTracks().forEach(t => t.enabled = !camOff);
-  el("btn-cam").textContent = camOff ? "📵" : "📷";
+  camOff=!camOff;
+  localMedia.getVideoTracks().forEach(t=>t.enabled=!camOff);
+  el("btn-cam").textContent=camOff?"📵":"📷";
 }
 
-// Listen for incoming calls
 function listenIncomingCalls() {
   db.collection("calls")
-    .where("calleeUid", "==", me.uid)
-    .where("status",    "==", "ringing")
-    .onSnapshot(snap => {
-      snap.docChanges().forEach(ch => {
-        if (ch.type === "added") {
-          const d = ch.doc.data();
-          callDocId  = ch.doc.id;
-          callType   = d.callType;
-          el("inc-av").textContent   = d.callerName[0].toUpperCase();
-          el("inc-name").textContent = d.callerName;
-          el("inc-type").textContent = d.callType === "video" ? "📹 Video Call" : "📞 Voice Call";
-          el("incoming-call").style.display = "block";
+    .where("calleeUid","==",me.uid)
+    .where("status","==","ringing")
+    .onSnapshot(snap=>{
+      snap.docChanges().forEach(ch=>{
+        if (ch.type==="added"){
+          const d=ch.doc.data();
+          callDocId=ch.doc.id; callType=d.callType;
+          el("inc-av").textContent=d.callerName[0].toUpperCase();
+          el("inc-name").textContent=d.callerName;
+          el("inc-type").textContent=d.callType==="video"?"📹 Video Call":"📞 Voice Call";
+          el("incoming-call").style.display="block";
         }
       });
     });
 }
 
-/* ============================================================
-   PUSH NOTIFICATIONS (FCM)
-============================================================ */
+// ============================================================
+// FCM
+// ============================================================
 async function setupFCM() {
   if (!messaging) return;
   try {
-    const perm = await Notification.requestPermission();
-    if (perm !== "granted") return;
-    const token = await messaging.getToken({ vapidKey: FCM_VAPID });
-    if (token)
-      await db.collection("users").doc(me.uid).update({ fcmToken: token });
-
-    messaging.onMessage(payload => {
-      toast(`🔔 ${payload.notification?.title}: ${payload.notification?.body}`, "ok");
+    const perm=await Notification.requestPermission();
+    if (perm!=="granted") return;
+    const token=await messaging.getToken({vapidKey:FCM_VAPID});
+    if (token) await db.collection("users").doc(me.uid).update({fcmToken:token});
+    messaging.onMessage(payload=>{
+      toast(`🔔 ${payload.notification?.title}: ${payload.notification?.body}`,"ok");
     });
-  } catch(e) {
-    console.log("FCM setup skipped:", e.message);
-  }
+  } catch(e){console.log("FCM skipped:",e.message);}
 }
 
-/* ============================================================
-   UI HELPERS
-============================================================ */
+// ============================================================
+// UI HELPERS
+// ============================================================
 function showScreen(s) {
-  el("auth-screen").style.display     = s === "auth"     ? "flex" : "none";
-  el("username-screen").style.display = s === "username" ? "flex" : "none";
-  el("app-screen").style.display      = s === "app"      ? "flex" : "none";
+  el("auth-screen").style.display    =s==="auth"    ?"flex":"none";
+  el("username-screen").style.display=s==="username"?"flex":"none";
+  el("app-screen").style.display     =s==="app"     ?"flex":"none";
 }
 
-async function signOut() {
-  await setPresence(false);
-  await auth.signOut();
-}
+async function signOut() { await setPresence(false); await auth.signOut(); }
 
 function toggleTheme() {
-  const html  = document.documentElement;
-  const dark  = html.getAttribute("data-theme") !== "light";
-  html.setAttribute("data-theme", dark ? "light" : "dark");
-  el("theme-btn").textContent = dark ? "☀️" : "🌙";
+  const html=document.documentElement;
+  const dark=html.getAttribute("data-theme")!=="light";
+  html.setAttribute("data-theme",dark?"light":"dark");
+  el("theme-btn").textContent=dark?"☀️":"🌙";
 }
 
-function onInputKey(e) {
-  if (e.key === "Enter" && !e.shiftKey) { e.preventDefault(); sendMsg(); }
-}
+function onInputKey(e) { if(e.key==="Enter"&&!e.shiftKey){e.preventDefault();sendMsg();} }
 
 function autoResize() {
-  const t = el("message-input");
-  t.style.height = "auto";
-  t.style.height = Math.min(t.scrollHeight, 100) + "px";
+  const t=el("message-input");
+  t.style.height="auto";
+  t.style.height=Math.min(t.scrollHeight,100)+"px";
 }
 
-function scrollBottom() {
-  const c = el("messages-container");
-  c.scrollTop = c.scrollHeight;
-}
+function scrollBottom(){const c=el("messages-container");c.scrollTop=c.scrollHeight;}
 
 function outsideClick(e) {
-  if (!e.target.closest("#emoji-panel") && !e.target.closest(".tool-btn"))
-    el("emoji-panel").style.display = "none";
-  if (!e.target.closest("#gif-panel") && !e.target.closest(".tool-btn"))
-    el("gif-panel").style.display = "none";
+  if (!e.target.closest("#emoji-panel")&&!e.target.closest(".tool-btn")) el("emoji-panel").style.display="none";
+  if (!e.target.closest("#gif-panel")&&!e.target.closest(".tool-btn")) el("gif-panel").style.display="none";
 }
 
-function openImg(url) {
-  el("modal-img").src = url;
-  el("img-modal").style.display = "flex";
+function openImg(url){el("modal-img").src=url;el("img-modal").style.display="flex";}
+
+function toast(msg,type="ok") {
+  const wrap=el("toast-wrap");
+  const t=document.createElement("div");
+  t.className=`toast ${type}`; t.textContent=msg;
+  wrap.appendChild(t); setTimeout(()=>t.remove(),4000);
 }
 
-function toast(msg, type = "ok") {
-  const wrap = el("toast-wrap");
-  const t = document.createElement("div");
-  t.className = `toast ${type}`;
-  t.textContent = msg;
-  wrap.appendChild(t);
-  setTimeout(() => t.remove(), 4000);
+function setErr(id,msg){const e=el(id);e.textContent=msg;e.style.display="block";}
+function clearErr(id){el(id).style.display="none";}
+function setLoading(id,on){
+  const b=el(id); b.disabled=on;
+  b.innerHTML=on?'<span class="spinner"></span>':(id==="btn-login"?"Sign In":id==="btn-otp"?"Send OTP":"Verify & Sign In");
 }
-
-function setErr(id, msg) {
-  const e = el(id);
-  e.textContent  = msg;
-  e.style.display = "block";
+function el(id){return document.getElementById(id);}
+function v(id){return el(id).value.trim();}
+function esc(s){const d=document.createElement("div");d.appendChild(document.createTextNode(s));return d.innerHTML;}
+function fmtTime(d){return d.toLocaleTimeString([],{hour:"2-digit",minute:"2-digit"});}
+function timeAgo(date){
+  const s=Math.floor((Date.now()-date)/1000);
+  if(s<60) return "just now";
+  if(s<3600) return Math.floor(s/60)+"m ago";
+  if(s<86400) return Math.floor(s/3600)+"h ago";
+  return Math.floor(s/86400)+"d ago";
 }
-
-function clearErr(id) {
-  el(id).style.display = "none";
-}
-
-function setLoading(id, on) {
-  const b = el(id);
-  b.disabled = on;
-  b.innerHTML = on ? '<span class="spinner"></span>' : (id === "btn-login" ? "Sign In" : id === "btn-otp" ? "Send OTP" : "Verify & Sign In");
-}
-
-function el(id)  { return document.getElementById(id); }
-function v(id)   { return el(id).value.trim(); }
-function esc(s)  {
-  const d = document.createElement("div");
-  d.appendChild(document.createTextNode(s));
-  return d.innerHTML;
-}
-
-function fmtTime(d) {
-  return d.toLocaleTimeString([], { hour:"2-digit", minute:"2-digit" });
-}
-
-function timeAgo(date) {
-  const s = Math.floor((Date.now() - date) / 1000);
-  if (s < 60)    return "just now";
-  if (s < 3600)  return Math.floor(s/60)   + "m ago";
-  if (s < 86400) return Math.floor(s/3600) + "h ago";
-  return Math.floor(s/86400) + "d ago";
-}
-
-function authMsg(err) {
-  const map = {
-    "auth/user-not-found":       "No account found with this email.",
-    "auth/wrong-password":       "Incorrect password.",
-    "auth/email-already-in-use": "Email already registered — try signing in.",
-    "auth/invalid-email":        "Invalid email address.",
-    "auth/weak-password":        "Password must be at least 6 characters.",
-    "auth/too-many-requests":    "Too many attempts. Try again later.",
+function authMsg(err){
+  const map={
+    "auth/user-not-found":"No account found with this email.",
+    "auth/wrong-password":"Incorrect password.",
+    "auth/email-already-in-use":"Email already registered — try signing in.",
+    "auth/invalid-email":"Invalid email address.",
+    "auth/weak-password":"Password must be at least 6 characters.",
+    "auth/too-many-requests":"Too many attempts. Try again later.",
     "auth/network-request-failed":"Network error — check your connection.",
+    "auth/invalid-login-credentials":"Wrong email or password. Try Create Account if new.",
     "auth/invalid-verification-code":"Invalid OTP code."
   };
-  return map[err.code] || err.message;
+  return map[err.code]||err.message;
 }
 </script>
-
-<!--
-  =====================================================
-  📋  SETUP GUIDE — READ BEFORE DEPLOYING
-  =====================================================
-
-  1. FIREBASE PROJECT
-     ─────────────────
-     a) Go to https://console.firebase.google.com
-     b) Create a new project called "TrioTalk"
-     c) Register a web app & copy the config into FIREBASE_CONFIG above
-
-  2. FIREBASE AUTHENTICATION
-     ─────────────────────────
-     a) Enable "Email/Password" provider
-     b) Enable "Phone" provider
-        → Phone auth needs a verified domain or localhost for testing
-
-  3. FIRESTORE DATABASE
-     ────────────────────
-     a) Create a database in "production" mode
-     b) Add these security rules:
-
-     rules_version = '2';
-     service cloud.firestore {
-       match /databases/{database}/documents {
-         // Only signed-in users can read/write their own user doc
-         match /users/{uid} {
-           allow read: if request.auth != null;
-           allow write: if request.auth.uid == uid;
-         }
-         // Chat messages: only participants can read/write
-         match /chats/{chatId}/{document=**} {
-           allow read, write: if request.auth != null &&
-             request.auth.uid in resource.data.members;
-         }
-         // Calls
-         match /calls/{callId} {
-           allow read, write: if request.auth != null;
-         }
-         match /calls/{callId}/{sub=**} {
-           allow read, write: if request.auth != null;
-         }
-       }
-     }
-
-  4. FIREBASE STORAGE
-     ───────────────────
-     Enable Storage and set rules to allow authenticated users to upload images.
-
-  5. FIREBASE CLOUD MESSAGING (push notifications)
-     ─────────────────────────────────────────────
-     a) In Firebase Console → Project Settings → Cloud Messaging
-        → Generate a Web Push certificate (VAPID key) → paste as FCM_VAPID above
-     b) Create "firebase-messaging-sw.js" in the same folder as this file:
-
-     importScripts('https://www.gstatic.com/firebasejs/9.22.2/firebase-app-compat.js');
-     importScripts('https://www.gstatic.com/firebasejs/9.22.2/firebase-messaging-compat.js');
-     firebase.initializeApp({ ...same config as above... });
-     const messaging = firebase.messaging();
-     messaging.onBackgroundMessage(payload => {
-       self.registration.showNotification(payload.notification.title, {
-         body: payload.notification.body,
-         icon: '/icon.png'
-       });
-     });
-
-  6. GIPHY API KEY
-     ───────────────
-     Sign up at https://developers.giphy.com → Create App → copy API key → paste as GIPHY_KEY above
-
-  7. ADD YOUR 3 FRIENDS
-     ─────────────────────
-     Replace the emails in ALLOWED_EMAILS with your actual friends' emails.
-     Only those 3 addresses can create accounts or sign in.
-
-  8. DEPLOY
-     ────────
-     Host these files (triotalk.html + firebase-messaging-sw.js) on Firebase Hosting,
-     Netlify, Vercel, or any static server. HTTPS is required for camera/mic access.
-
-  =====================================================
--->
 </body>
-</html>
-      bottom:-150px; left:-150px;
-      animation:glow1 12s ease-in-out infinite reverse;
-    }
-    @keyframes glow1 {
-      0%,100%{transform:translate(0,0) scale(1)}
-      50%{transform:translate(20px,-20px) scale(1.06)}
-    }
-
-    .auth-card {
-      background:var(--bg-secondary);
-      border:1px solid var(--border);
-      border-radius:22px;
-      padding:40px 36px;
-      width:420px;
-      position:relative;
-      z-index:1;
-      box-shadow:var(--shadow);
-      animation:slideUp .4s ease;
-    }
-    @keyframes slideUp {
-      from{opacity:0;transform:translateY(20px)}
-      to{opacity:1;transform:translateY(0)}
-    }
-
-    .auth-logo {
-      text-align:center;
-      margin-bottom:30px;
-    }
-    .logo-icon {
-      width:66px; height:66px;
-      background:var(--accent);
-      border-radius:20px;
-      display:inline-flex;
-      align-items:center;
-      justify-content:center;
-      font-size:32px;
-      margin-bottom:14px;
-      box-shadow:0 0 40px rgba(0,212,170,.3);
-    }
-    .auth-logo h1 {
-      font-family:'Space Grotesk',sans-serif;
-      font-size:27px;
-      font-weight:700;
-    }
-    .auth-logo p {
-      font-size:13.5px;
-      color:var(--text-secondary);
-      margin-top:4px;
-    }
-
-    /* Tabs */
-    .auth-tabs {
-      display:flex;
-      background:var(--bg-tertiary);
-      border-radius:12px;
-      padding:4px;
-      margin-bottom:22px;
-    }
-    .auth-tab {
-      flex:1;
-      padding:9px;
-      text-align:center;
-      border-radius:9px;
-      cursor:pointer;
-      font-size:14px;
-      font-weight:500;
-      color:var(--text-secondary);
-      transition:all .2s;
-      user-select:none;
-    }
-    .auth-tab.active { background:var(--accent); color:#000; font-weight:600; }
-
-    .auth-form { display:none; }
-    .auth-form.active { display:block; }
-
-    /* Form fields */
-    .form-group { margin-bottom:15px; }
-    .form-group label {
-      display:block;
-      font-size:13px;
-      font-weight:500;
-      color:var(--text-secondary);
-      margin-bottom:6px;
-    }
-    .form-group input,
-    .form-group textarea {
-      width:100%;
-      padding:12px 15px;
-      background:var(--bg-tertiary);
-      border:1px solid var(--border);
-      border-radius:11px;
-      color:var(--text-primary);
-      font-family:'DM Sans',sans-serif;
-      font-size:15px;
-      outline:none;
-      transition:border-color .2s, box-shadow .2s;
-    }
-    .form-group input:focus {
-      border-color:var(--accent);
-      box-shadow:0 0 0 3px var(--accent-dim);
-    }
-
-    /* Buttons */
-    .btn-primary {
-      width:100%;
-      padding:13px;
-      background:var(--accent);
-      color:#000;
-      border:none;
-      border-radius:11px;
-      font-family:'DM Sans',sans-serif;
-      font-size:15px;
-      font-weight:600;
-      cursor:pointer;
-      transition:background .2s, transform .1s;
-      margin-top:4px;
-      display:flex;
-      align-items:center;
-      justify-content:center;
-      gap:8px;
-    }
-    .btn-primary:hover { background:var(--accent-dark); }
-    .btn-primary:active { transform:scale(.98); }
-    .btn-primary:disabled { opacity:.6; cursor:not-allowed; }
-
-    .btn-secondary {
-      width:100%;
-      padding:11px;
-      background:transparent;
-      color:var(--accent);
-      border:1px solid var(--accent);
-      border-radius:11px;
-      font-family:'DM Sans',sans-serif;
-      font-size:14px;
-      font-weight:500;
-      cursor:pointer;
-      transition:all .2s;
-      margin-top:8px;
-    }
-    .btn-secondary:hover { background:var(--accent-dim); }
-
-    .error-box {
-      background:rgba(248,81,73,.1);
-      border:1px solid rgba(248,81,73,.3);
-      color:var(--danger);
-      padding:10px 14px;
-      border-radius:9px;
-      font-size:13px;
-      margin-bottom:14px;
-      display:none;
-    }
-
-    /* Spinner */
-    .spinner {
-      display:inline-block;
-      width:18px; height:18px;
-      border:2px solid rgba(0,0,0,.2);
-      border-top-color:#000;
-      border-radius:50%;
-      animation:spin .6s linear infinite;
-    }
-    @keyframes spin { to { transform:rotate(360deg); } }
-
-    /* ===================================================
-       USERNAME SCREEN
-    =================================================== */
-    #username-screen {
-      display:none;
-      align-items:center;
-      justify-content:center;
-      height:100vh;
-    }
-
-    /* ===================================================
-       MAIN APP LAYOUT
-    =================================================== */
-    #app-screen {
-      display:none;
-      height:100vh;
-      flex-direction:row;
-    }
-
-    /* ========================
-       SIDEBAR
-    ========================= */
-    #sidebar {
-      width:310px;
-      min-width:310px;
-      background:var(--bg-secondary);
-      border-right:1px solid var(--border);
-      display:flex;
-      flex-direction:column;
-      height:100vh;
-      transition:width .3s;
-    }
-
-    .sidebar-header {
-      padding:14px 16px;
-      border-bottom:1px solid var(--border);
-      display:flex;
-      align-items:center;
-      justify-content:space-between;
-      gap:10px;
-    }
-    .my-profile {
-      display:flex;
-      align-items:center;
-      gap:10px;
-      min-width:0;
-    }
-
-    /* Avatar */
-    .avatar {
-      width:40px; height:40px;
-      border-radius:50%;
-      background:var(--accent);
-      display:flex;
-      align-items:center;
-      justify-content:center;
-      font-weight:700;
-      font-size:16px;
-      color:#000;
-      flex-shrink:0;
-      position:relative;
-      user-select:none;
-    }
-    .avatar.lg { width:48px; height:48px; font-size:20px; }
-    .avatar.xl { width:80px; height:80px; font-size:34px; }
-    .avatar[data-status="online"]::after {
-      content:'';
-      position:absolute;
-      bottom:1px; right:1px;
-      width:10px; height:10px;
-      background:var(--online);
-      border-radius:50%;
-      border:2px solid var(--bg-secondary);
-    }
-    .avatar[data-status="offline"]::after {
-      content:'';
-      position:absolute;
-      bottom:1px; right:1px;
-      width:10px; height:10px;
-      background:var(--text-muted);
-      border-radius:50%;
-      border:2px solid var(--bg-secondary);
-    }
-
-    .profile-text { min-width:0; }
-    .my-name {
-      font-weight:600;
-      font-size:15px;
-      white-space:nowrap;
-      overflow:hidden;
-      text-overflow:ellipsis;
-    }
-    .my-tag {
-      font-size:12px;
-      color:var(--online);
-    }
-
-    .sidebar-actions { display:flex; gap:6px; }
-    .icon-btn {
-      width:34px; height:34px;
-      border-radius:9px;
-      background:var(--bg-tertiary);
-      border:none;
-      color:var(--text-secondary);
-      cursor:pointer;
-      display:flex;
-      align-items:center;
-      justify-content:center;
-      font-size:15px;
-      transition:all .2s;
-      flex-shrink:0;
-    }
-    .icon-btn:hover { background:var(--accent-dim); color:var(--accent); }
-
-    .sidebar-label {
-      padding:14px 16px 6px;
-      font-size:10.5px;
-      font-weight:600;
-      text-transform:uppercase;
-      letter-spacing:1.2px;
-      color:var(--text-muted);
-    }
-
-    .friend-list {
-      flex:1;
-      overflow-y:auto;
-      padding:4px 8px 8px;
-    }
-
-    .friend-item {
-      display:flex;
-      align-items:center;
-      gap:11px;
-      padding:11px 10px;
-      border-radius:13px;
-      cursor:pointer;
-      transition:all .18s;
-    }
-    .friend-item:hover { background:var(--bg-hover); }
-    .friend-item.active { background:var(--accent-dim); }
-    .friend-item.active .friend-name { color:var(--accent); }
-
-    .friend-avatar-wrap { position:relative; flex-shrink:0; }
-
-    .friend-info { flex:1; min-width:0; }
-    .friend-name {
-      font-weight:500;
-      font-size:14.5px;
-      white-space:nowrap;
-      overflow:hidden;
-      text-overflow:ellipsis;
-    }
-    .friend-preview {
-      font-size:12.5px;
-      color:var(--text-secondary);
-      white-space:nowrap;
-      overflow:hidden;
-      text-overflow:ellipsis;
-      margin-top:2px;
-    }
-
-    .friend-meta {
-      display:flex;
-      flex-direction:column;
-      align-items:flex-end;
-      gap:5px;
-      flex-shrink:0;
-    }
-    .friend-time { font-size:11px; color:var(--text-muted); }
-    .online-dot {
-      width:8px; height:8px;
-      background:var(--online);
-      border-radius:50%;
-    }
-
-    /* ========================
-       CHAT AREA
-    ========================= */
-    #chat-area {
-      flex:1;
-      display:flex;
-      flex-direction:column;
-      height:100vh;
-      background:var(--bg-primary);
-      position:relative;
-      min-width:0;
-    }
-
-    #no-chat {
-      flex:1;
-      display:flex;
-      flex-direction:column;
-      align-items:center;
-      justify-content:center;
-      gap:14px;
-      color:var(--text-muted);
-    }
-    #no-chat .nc-icon { font-size:72px; opacity:.2; }
-    #no-chat h3 { font-size:20px; font-family:'Space Grotesk',sans-serif; }
-    #no-chat p { font-size:14px; }
-
-    #chat-window {
-      display:none;
-      flex-direction:column;
-      height:100vh;
-    }
-
-    /* Chat Header */
-    #chat-header {
-      padding:12px 18px;
-      border-bottom:1px solid var(--border);
-      display:flex;
-      align-items:center;
-      gap:12px;
-      background:var(--bg-secondary);
-    }
-    .ch-info { flex:1; min-width:0; }
-    .ch-name {
-      font-family:'Space Grotesk',sans-serif;
-      font-size:16px;
-      font-weight:600;
-    }
-    .ch-status {
-      font-size:12px;
-      color:var(--text-secondary);
-      margin-top:2px;
-    }
-    .ch-status.online { color:var(--online); }
-
-    .chat-actions { display:flex; gap:8px; }
-    .call-btn {
-      width:38px; height:38px;
-      background:var(--bg-tertiary);
-      border:none;
-      border-radius:10px;
-      color:var(--text-secondary);
-      font-size:17px;
-      cursor:pointer;
-      display:flex;
-      align-items:center;
-      justify-content:center;
-      transition:all .2s;
-    }
-    .call-btn:hover { background:var(--accent); color:#000; }
-    .call-btn.video:hover { background:#3fb950; color:#fff; }
-
-    /* Messages */
-    #messages-container {
-      flex:1;
-      overflow-y:auto;
-      padding:18px 20px;
-      display:flex;
-      flex-direction:column;
-      gap:3px;
-      scroll-behavior:smooth;
-    }
-
-    .date-sep {
-      text-align:center;
-      margin:12px 0 6px;
-    }
-    .date-sep span {
-      font-size:11.5px;
-      color:var(--text-muted);
-      background:var(--bg-primary);
-      padding:4px 14px;
-      border-radius:100px;
-      border:1px solid var(--border);
-    }
-
-    .msg-row {
-      display:flex;
-      align-items:flex-end;
-      gap:8px;
-      max-width:100%;
-    }
-    .msg-row.sent { justify-content:flex-end; }
-    .msg-row.received { justify-content:flex-start; }
-
-    .bubble {
-      max-width:62%;
-      padding:10px 14px;
-      border-radius:18px;
-      font-size:14.5px;
-      line-height:1.5;
-      word-break:break-word;
-      position:relative;
-      animation:msgIn .2s ease;
-    }
-    @keyframes msgIn {
-      from{opacity:0;transform:translateY(6px)}
-      to{opacity:1;transform:translateY(0)}
-    }
-    .msg-row.sent .bubble {
-      background:var(--msg-sent);
-      color:#003828;
-      border-bottom-right-radius:4px;
-      font-weight:500;
-    }
-    .msg-row.received .bubble {
-      background:var(--msg-recv);
-      color:var(--text-primary);
-      border-bottom-left-radius:4px;
-    }
-    .msg-time {
-      font-size:10.5px;
-      opacity:.55;
-      display:block;
-      margin-top:4px;
-      text-align:right;
-    }
-    .msg-row.received .msg-time { text-align:left; }
-
-    .bubble img {
-      max-width:240px;
-      border-radius:10px;
-      display:block;
-      cursor:pointer;
-      transition:opacity .2s;
-    }
-    .bubble img:hover { opacity:.88; }
-    .bubble.img-bubble { padding:5px; }
-
-    /* Typing indicator */
-    #typing-bar {
-      min-height:30px;
-      padding:0 20px 4px;
-      display:flex;
-      align-items:center;
-      gap:8px;
-      font-size:13px;
-      color:var(--text-secondary);
-      font-style:italic;
-    }
-    .typing-dots { display:flex; gap:3px; }
-    .typing-dot {
-      width:6px; height:6px;
-      background:var(--text-secondary);
-      border-radius:50%;
-      animation:tdot 1.2s infinite;
-    }
-    .typing-dot:nth-child(2){animation-delay:.2s}
-    .typing-dot:nth-child(3){animation-delay:.4s}
-    @keyframes tdot {
-      0%,60%,100%{transform:translateY(0)}
-      30%{transform:translateY(-5px)}
-    }
-
-    /* Input Area */
-    #input-area {
-      padding:10px 14px 12px;
-      border-top:1px solid var(--border);
-      background:var(--bg-secondary);
-      display:flex;
-      align-items:flex-end;
-      gap:8px;
-    }
-    .tool-btn {
-      width:40px; height:40px;
-      background:var(--bg-tertiary);
-      border:none;
-      border-radius:11px;
-      color:var(--text-secondary);
-      font-size:19px;
-      cursor:pointer;
-      display:flex;
-      align-items:center;
-      justify-content:center;
-      transition:all .2s;
-      flex-shrink:0;
-    }
-    .tool-btn:hover { background:var(--accent-dim); color:var(--accent); }
-    .tool-btn.gif-btn { font-size:12px; font-weight:700; font-family:'Space Grotesk',sans-serif; }
-
-    #input-wrap {
-      flex:1;
-      background:var(--bg-tertiary);
-      border:1px solid var(--border);
-      border-radius:13px;
-      display:flex;
-      align-items:center;
-      padding:0 12px;
-      transition:border-color .2s;
-    }
-    #input-wrap:focus-within { border-color:var(--accent); }
-    #message-input {
-      flex:1;
-      background:transparent;
-      border:none;
-      outline:none;
-      color:var(--text-primary);
-      font-family:'DM Sans',sans-serif;
-      font-size:15px;
-      padding:10px 0;
-      resize:none;
-      max-height:100px;
-      line-height:1.4;
-    }
-    #message-input::placeholder { color:var(--text-muted); }
-
-    #send-btn {
-      width:44px; height:44px;
-      background:var(--accent);
-      border:none;
-      border-radius:13px;
-      color:#003828;
-      font-size:20px;
-      cursor:pointer;
-      display:flex;
-      align-items:center;
-      justify-content:center;
-      flex-shrink:0;
-      transition:all .2s;
-    }
-    #send-btn:hover { background:var(--accent-dark); transform:scale(1.05); }
-
-    /* ========================
-       EMOJI PICKER PANEL
-    ========================= */
-    #emoji-panel {
-      position:absolute;
-      bottom:76px;
-      left:20px;
-      z-index:200;
-      display:none;
-      border-radius:14px;
-      overflow:hidden;
-      box-shadow:var(--shadow);
-    }
-
-    /* ========================
-       GIF PICKER PANEL
-    ========================= */
-    #gif-panel {
-      position:absolute;
-      bottom:76px;
-      left:70px;
-      z-index:200;
-      display:none;
-      background:var(--bg-secondary);
-      border:1px solid var(--border);
-      border-radius:16px;
-      width:330px;
-      box-shadow:var(--shadow);
-      flex-direction:column;
-      overflow:hidden;
-    }
-    .gif-search-bar {
-      padding:10px 12px;
-      border-bottom:1px solid var(--border);
-    }
-    .gif-search-bar input {
-      width:100%;
-      padding:9px 13px;
-      background:var(--bg-tertiary);
-      border:1px solid var(--border);
-      border-radius:9px;
-      color:var(--text-primary);
-      font-family:'DM Sans',sans-serif;
-      font-size:14px;
-      outline:none;
-    }
-    .gif-grid {
-      display:grid;
-      grid-template-columns:1fr 1fr;
-      gap:6px;
-      padding:10px;
-      overflow-y:auto;
-      max-height:300px;
-    }
-    .gif-card {
-      border-radius:9px;
-      overflow:hidden;
-      cursor:pointer;
-      transition:transform .2s;
-      aspect-ratio:16/9;
-      background:var(--bg-tertiary);
-    }
-    .gif-card:hover { transform:scale(1.04); }
-    .gif-card img { width:100%; height:100%; object-fit:cover; display:block; }
-    .gif-empty {
-      grid-column:span 2;
-      text-align:center;
-      padding:24px;
-      color:var(--text-muted);
-      font-size:13px;
-    }
-
-    /* ========================
-       CALL OVERLAY
-    ========================= */
-    #call-overlay {
-      display:none;
-      position:fixed;
-      inset:0;
-      background:rgba(0,0,0,.94);
-      z-index:1000;
-      flex-direction:column;
-      align-items:center;
-      justify-content:center;
-      gap:24px;
-    }
-    .call-info-box { text-align:center; }
-    .call-avatar-big {
-      width:100px; height:100px;
-      border-radius:50%;
-      background:var(--accent);
-      color:#000;
-      font-size:42px;
-      font-weight:700;
-      display:flex;
-      align-items:center;
-      justify-content:center;
-      margin:0 auto 18px;
-      animation:cpulse 2s ease-in-out infinite;
-    }
-    @keyframes cpulse {
-      0%,100%{box-shadow:0 0 0 0 rgba(0,212,170,.4)}
-      50%{box-shadow:0 0 0 24px rgba(0,212,170,0)}
-    }
-    .call-peer-name {
-      font-family:'Space Grotesk',sans-serif;
-      font-size:28px;
-      font-weight:700;
-      color:#fff;
-      margin-bottom:6px;
-    }
-    .call-state { font-size:16px; color:#aaa; }
-
-    #video-wrap {
-      display:none;
-      position:relative;
-      width:min(640px,90vw);
-      aspect-ratio:16/9;
-      border-radius:18px;
-      overflow:hidden;
-      background:#000;
-    }
-    #remote-video { width:100%; height:100%; object-fit:cover; }
-    #local-video {
-      position:absolute;
-      bottom:12px; right:12px;
-      width:130px;
-      border-radius:10px;
-      border:2px solid #fff;
-      object-fit:cover;
-    }
-
-    .call-controls {
-      display:flex;
-      gap:22px;
-    }
-    .cc-btn {
-      width:60px; height:60px;
-      border-radius:50%;
-      border:none;
-      font-size:22px;
-      cursor:pointer;
-      display:flex;
-      align-items:center;
-      justify-content:center;
-      transition:all .2s;
-    }
-    .cc-btn:hover { transform:scale(1.1); }
-    .cc-btn.end { background:#e53935; color:#fff; }
-    .cc-btn.toggle { background:#333; color:#fff; }
-
-    /* ========================
-       INCOMING CALL TOAST
-    ========================= */
-    #incoming-call {
-      display:none;
-      position:fixed;
-      top:18px; right:18px;
-      background:var(--bg-secondary);
-      border:1px solid var(--border);
-      border-radius:18px;
-      padding:16px 18px;
-      z-index:1001;
-      box-shadow:var(--shadow);
-      min-width:270px;
-      animation:slideInRight .3s ease;
-    }
-    @keyframes slideInRight {
-      from{transform:translateX(110%);opacity:0}
-      to{transform:translateX(0);opacity:1}
-    }
-    .inc-header {
-      display:flex;
-      align-items:center;
-      gap:12px;
-      margin-bottom:14px;
-    }
-    .inc-text h4 { font-size:15px; font-weight:600; margin-bottom:2px; }
-    .inc-text p { font-size:12.5px; color:var(--text-secondary); }
-    .inc-actions { display:flex; gap:10px; }
-    .inc-accept,.inc-decline {
-      flex:1;
-      padding:10px;
-      border:none;
-      border-radius:11px;
-      font-weight:600;
-      font-size:13.5px;
-      cursor:pointer;
-      transition:opacity .2s;
-    }
-    .inc-accept { background:var(--online); color:#fff; }
-    .inc-decline { background:var(--danger); color:#fff; }
-    .inc-accept:hover,.inc-decline:hover { opacity:.85; }
-
-    /* ========================
-       IMAGE PREVIEW MODAL
-    ========================= */
-    #img-modal {
-      display:none;
-      position:fixed;
-      inset:0;
-      background:rgba(0,0,0,.92);
-      z-index:2000;
-      align-items:center;
-      justify-content:center;
-      cursor:zoom-out;
-    }
-    #img-modal img {
-      max-width:92vw;
-      max-height:92vh;
-      border-radius:10px;
-      box-shadow:0 20px 60px rgba(0,0,0,.6);
-    }
-
-    /* ========================
-       TOAST NOTIFICATIONS
-    ========================= */
-    #toast-wrap {
-      position:fixed;
-      bottom:24px;
-      left:50%;
-      transform:translateX(-50%);
-      z-index:3000;
-      display:flex;
-      flex-direction:column;
-      gap:8px;
-      align-items:center;
-    }
-    .toast {
-      background:var(--bg-secondary);
-      border:1px solid var(--border);
-      border-radius:11px;
-      padding:11px 18px;
-      font-size:13.5px;
-      color:var(--text-primary);
-      box-shadow:var(--shadow);
-      animation:toastIn .3s ease;
-      white-space:nowrap;
-    }
-    .toast.ok { border-left:3px solid var(--accent); }
-    .toast.err { border-left:3px solid var(--danger); }
-    @keyframes toastIn {
-      from{opacity:0;transform:translateY(8px)}
-      to{opacity:1;transform:translateY(0)}
-    }
-
-    /* ========================
-       RESPONSIVE
-    ========================= */
-    @media(max-width:700px) {
-      #sidebar { width:68px; min-width:68px; }
-      .my-name,.my-tag,.sidebar-label,
-      .friend-info,.friend-meta,.profile-text { display:none; }
-      .auth-card { width:95%; padding:24px 20px; }
-      #emoji-panel,#gif-panel { left:8px; }
-    }
- </style>
-</head>
-
-<body>
-
- <!-- ========================================================
-     AUTH SCREEN
-======================================================== -->
- <div id="auth-screen">
-  <div class="auth-card">
-   <div class="auth-logo">
-    <div class="logo-icon">ð¬</div>
-    <h1>TrioTalk</h1>
-    <p>A private space for three friends</p>
-   </div>
-
-   <div id="auth-err" class="error-box"></div>
-
-   <div class="auth-tabs">
-    <div class="auth-tab active" onclick="switchTab('email')">ð§ Email</div>
-    <div class="auth-tab" onclick="switchTab('phone')">ð± Phone OTP</div>
-   </div>
-
-   <!-- Email / Password -->
-   <div id="email-form" class="auth-form active">
-    <div class="form-group">
-     <label>Email Address</label>
-     <input type="email" id="f-email" placeholder="you@example.com" autocomplete="email">
-    </div>
-    <div class="form-group">
-     <label>Password</label>
-     <input type="password" id="f-pass" placeholder="Min 6 characters" autocomplete="current-password">
-    </div>
-    <button class="btn-primary" id="btn-login" onclick="emailLogin()">Sign In</button>
-    <button class="btn-secondary" onclick="emailSignup()">Create Account</button>
-   </div>
-
-   <!-- Phone OTP -->
-   <div id="phone-form" class="auth-form">
-    <div id="phone-step1">
-     <div class="form-group">
-      <label>Phone Number (with country code)</label>
-      <input type="tel" id="f-phone" placeholder="+1 555 000 0000">
-     </div>
-     <div id="recaptcha-container"></div>
-     <button class="btn-primary" id="btn-otp" onclick="sendOTP()">Send OTP</button>
-    </div>
-    <div id="phone-step2" style="display:none">
-     <div class="form-group">
-      <label>Enter the 6-digit OTP</label>
-      <input type="number" id="f-otp" placeholder="123456" maxlength="6">
-     </div>
-     <button class="btn-primary" id="btn-verify" onclick="verifyOTP()">Verify & Sign In</button>
-     <button class="btn-secondary" onclick="backToPhone()">â Change Number</button>
-    </div>
-   </div>
-  </div>
- </div>
-
- <!-- ========================================================
-     USERNAME SCREEN
-======================================================== -->
- <div id="username-screen">
-  <div class="auth-card">
-   <div class="auth-logo">
-    <div class="logo-icon">ð</div>
-    <h1>Pick a Username</h1>
-    <p>Your friends will see this name</p>
-   </div>
-   <div id="uname-err" class="error-box"></div>
-   <div class="form-group">
-    <label>Username (letters, numbers, underscores)</label>
-    <input type="text" id="f-username" placeholder="e.g. alex_99" maxlength="20" onkeydown="if(event.key==='Enter') saveUsername()">
-   </div>
-   <button class="btn-primary" onclick="saveUsername()">Continue â</button>
-  </div>
- </div>
-
- <!-- ========================================================
-     MAIN APP
-======================================================== -->
- <div id="app-screen">
-
-  <!-- ===== SIDEBAR ===== -->
-  <div id="sidebar">
-   <div class="sidebar-header">
-    <div class="my-profile">
-     <div class="avatar" id="my-avatar" data-status="online">?</div>
-     <div class="profile-text">
-      <div class="my-name" id="my-name-label">Me</div>
-      <div class="my-tag">â Active</div>
-     </div>
-    </div>
-    <div class="sidebar-actions">
-     <button class="icon-btn" id="theme-btn" onclick="toggleTheme()" title="Toggle dark/light mode">ð</button>
-     <button class="icon-btn" onclick="signOut()" title="Sign out">ðª</button>
-    </div>
-   </div>
-
-   <div class="sidebar-label">Friends</div>
-
-   <div class="friend-list" id="friend-list">
-    <div style="padding:12px;font-size:13px;color:var(--text-muted);">Loading friendsâ¦</div>
-   </div>
-  </div>
-
-  <!-- ===== CHAT AREA ===== -->
-  <div id="chat-area">
-
-   <!-- Placeholder when no chat open -->
-   <div id="no-chat">
-    <div class="nc-icon">ð¬</div>
-    <h3>TrioTalk</h3>
-    <p>Select a friend to start chatting</p>
-   </div>
-
-   <!-- Active chat window -->
-   <div id="chat-window">
-
-    <!-- Header -->
-    <div id="chat-header">
-     <div class="avatar" id="ch-avatar">?</div>
-     <div class="ch-info">
-      <div class="ch-name" id="ch-name">Friend</div>
-      <div class="ch-status" id="ch-status">Offline</div>
-     </div>
-     <div class="chat-actions">
-      <button class="call-btn" title="Voice call" onclick="startCall('audio')">ð</button>
-      <button class="call-btn video" title="Video call" onclick="startCall('video')">ð¥</button>
-     </div>
-    </div>
-
-    <!-- Messages -->
-    <div id="messages-container"></div>
-
-    <!-- Typing bar -->
-    <div id="typing-bar"></div>
-
-    <!-- Input -->
-    <div id="input-area">
-     <div style="display:flex;gap:6px;">
-      <button class="tool-btn" title="Emoji" onclick="toggleEmoji(event)">ð</button>
-      <button class="tool-btn gif-btn" title="GIF" onclick="toggleGif(event)">GIF</button>
-      <button class="tool-btn" title="Send image" onclick="document.getElementById('img-input').click()">ð</button>
-      <input type="file" id="img-input" accept="image/*" style="display:none" onchange="uploadImage(event)">
-     </div>
-
-     <div id="input-wrap">
-      <textarea id="message-input" placeholder="Type a messageâ¦" rows="1" oninput="onType()" onkeydown="onInputKey(event)"></textarea>
-     </div>
-
-     <button id="send-btn" onclick="sendMsg()" title="Send">â¤</button>
-    </div>
-
-   </div>
-   <!-- /chat-window -->
-
-   <!-- Emoji Picker -->
-   <div id="emoji-panel">
-    <emoji-picker id="ep"></emoji-picker>
-   </div>
-
-   <!-- GIF Picker -->
-   <div id="gif-panel">
-    <div class="gif-search-bar">
-     <input type="text" id="gif-q" placeholder="ð  Search GIFsâ¦" oninput="onGifSearch()">
-    </div>
-    <div class="gif-grid" id="gif-grid">
-     <div class="gif-empty">Loading trending GIFsâ¦</div>
-    </div>
-   </div>
-
-  </div>
-  <!-- /chat-area -->
- </div>
- <!-- /app-screen -->
-
- <!-- ========================================================
-     CALL OVERLAY
-======================================================== -->
- <div id="call-overlay">
-  <div class="call-info-box">
-   <div class="call-avatar-big" id="call-av">?</div>
-   <div class="call-peer-name" id="call-name">Friend</div>
-   <div class="call-state" id="call-state">Callingâ¦</div>
-  </div>
-
-  <div id="video-wrap">
-   <video id="remote-video" autoplay playsinline></video>
-   <video id="local-video" autoplay muted playsinline></video>
-  </div>
-
-  <div class="call-controls">
-   <button class="cc-btn toggle" id="btn-mute" onclick="toggleMute()" title="Mute">ð¤</button>
-   <button class="cc-btn end" onclick="endCall()" title="End call">ðµ</button>
-   <button class="cc-btn toggle" id="btn-cam" onclick="toggleCam()" title="Camera">ð·</button>
-  </div>
- </div>
-
- <!-- ========================================================
-     INCOMING CALL
-======================================================== -->
- <div id="incoming-call">
-  <div class="inc-header">
-   <div class="avatar lg" id="inc-av">?</div>
-   <div class="inc-text">
-    <h4 id="inc-name">Friend</h4>
-    <p id="inc-type">ð Voice Call</p>
-   </div>
-  </div>
-  <div class="inc-actions">
-   <button class="inc-accept" onclick="acceptCall()">â Accept</button>
-   <button class="inc-decline" onclick="declineCall()">â Decline</button>
-  </div>
- </div>
-
- <!-- Image Modal -->
- <div id="img-modal" onclick="this.style.display='none'">
-  <img id="modal-img" src="" alt="Preview">
- </div>
-
- <!-- Toasts -->
- <div id="toast-wrap"></div>
-
- <!-- ========================================================
-     JAVASCRIPT
-======================================================== -->
- <script>
-  "use strict";
-  
-  /* ============================================================
-     â ï¸  CONFIGURATION â REPLACE ALL "YOUR_..." VALUES BELOW â ï¸
-     
-     1. Create a Firebase project at https://console.firebase.google.com
-     2. Enable Authentication (Email/Password + Phone)
-     3. Enable Firestore Database
-     4. Enable Storage
-     5. Enable Cloud Messaging
-     6. Copy your web app's config here
-     7. Get a free GIPHY API key at https://developers.giphy.com
-     
-     For push notifications, also create a file called
-     "firebase-messaging-sw.js" in the same folder with:
-     ----------------------------------------------------------------
-     importScripts('https://www.gstatic.com/firebasejs/9.22.2/firebase-app-compat.js');
-     importScripts('https://www.gstatic.com/firebasejs/9.22.2/firebase-messaging-compat.js');
-     firebase.initializeApp({ ...your config... });
-     const messaging = firebase.messaging();
-     ----------------------------------------------------------------
-  ============================================================ */
-  
-  const FIREBASE_CONFIG = {
-    apiKey:            "AIzaSyBliLwAo40czO5H7i5qycAblARO8XgYIoA",
-    authDomain:        "triotalk-96277.firebaseapp.com",
-    projectId:         "triotalk-96277",
-    storageBucket:     "triotalk-96277.firebasestorage.app",
-    messagingSenderId: "908549997661",
-    appId:             "1:908549997661:web:d7f9d044f937942c40b9b4", 
-    measurementId:     "G-5P3CHJGHNR"
-  };
-  
-  // Get a free key â https://developers.giphy.com/dashboard/
-  const GIPHY_KEY = "YOUR_GIPHY_API_KEY";
-  
-  // FCM Web Push certificate (Firebase Console â Project Settings â Cloud Messaging)
-  const FCM_VAPID = "YOUR_VAPID_KEY";
-  
-  // Only these email addresses can access TrioTalk
-  // Add your 3 friends' emails here:
-  const ALLOWED_EMAILS = [
-    "ckarpita06@gmail.com",
-    "gadilingappapkkp@gmail.com",
-    "nandish2203@gmail.com"
-  ];
-  
-  // Optionally also allow specific phone numbers (with country code):
-  const ALLOWED_PHONES = [
-    "+918660969654",
-    "+919632491225",
-    "+917411059735"
-  ];
-  
-  /* ============================================================
-     FIREBASE INIT
-  ============================================================ */
-  firebase.initializeApp(FIREBASE_CONFIG);
-  const auth    = firebase.auth();
-  const db      = firebase.firestore();
-  const storage = firebase.storage();
-  
-  let messaging = null;
-  try { messaging = firebase.messaging(); } catch(e) {}
-  
-  /* ============================================================
-     APP STATE
-  ============================================================ */
-  let me       = null;    // firebase.User
-  let myName   = "";      // chosen username
-  let chatWith = null;    // uid of open friend
-  let chatName = "";      // name of open friend
-  let unsubMsgs   = null;
-  let unsubStatus = null;
-  let unsubTyping = null;
-  let typTimer    = null;
-  let confirmRes  = null; // phone OTP confirmation
-  
-  // WebRTC
-  let pc         = null;  // RTCPeerConnection
-  let localMedia = null;  // MediaStream
-  let callDocId  = null;
-  let isCaller   = false;
-  let callType   = "audio";
-  let muted      = false;
-  let camOff     = false;
-  
-  const RTC_CFG = {
-    iceServers: [
-      { urls: "stun:stun.l.google.com:19302" },
-      { urls: "stun:stun1.l.google.com:19302" }
-    ]
-  };
-  
-  /* ============================================================
-     AUTH STATE â runs every time login state changes
-  ============================================================ */
-  auth.onAuthStateChanged(async user => {
-    if (!user) { showScreen("auth"); return; }
-  
-    // ââ Access check ââââââââââââââââââââââââââââââââââââââââââ
-    const email = user.email || "";
-    const phone = user.phoneNumber || "";
-    const allowed = ALLOWED_EMAILS.includes(email) ||
-                    ALLOWED_PHONES.includes(phone);
-  
-    if (!allowed) {
-      toast("ð« Access denied â this app is invite-only.", "err");
-      await auth.signOut();
-      return;
-    }
-  
-    me = user;
-  
-    // ââ Check username ââââââââââââââââââââââââââââââââââââââââ
-    const snap = await db.collection("users").doc(me.uid).get();
-    if (!snap.exists || !snap.data().username) {
-      showScreen("username");
-    } else {
-      myName = snap.data().username;
-      bootApp();
-    }
-  });
-  
-  /* ============================================================
-     AUTH â EMAIL / PASSWORD
-  ============================================================ */
-  function switchTab(tab) {
-    const tabs = document.querySelectorAll(".auth-tab");
-    tabs[0].classList.toggle("active", tab === "email");
-    tabs[1].classList.toggle("active", tab === "phone");
-    document.getElementById("email-form").classList.toggle("active", tab === "email");
-    document.getElementById("phone-form").classList.toggle("active", tab === "phone");
-    clearErr("auth-err");
-  }
-  
-  async function emailLogin() {
-    const email = v("f-email"), pass = v("f-pass");
-    if (!email || !pass) return setErr("auth-err", "Please fill in all fields.");
-    setLoading("btn-login", true);
-    try {
-      await auth.signInWithEmailAndPassword(email, pass);
-    } catch(e) {
-      setErr("auth-err", authMsg(e));
-      setLoading("btn-login", false);
-    }
-  }
-  
-  async function emailSignup() {
-    const email = v("f-email"), pass = v("f-pass");
-    if (!email || !pass) return setErr("auth-err", "Please fill in all fields.");
-    if (!ALLOWED_EMAILS.includes(email))
-      return setErr("auth-err", "This email is not on the allowed list.");
-    if (pass.length < 6)
-      return setErr("auth-err", "Password must be at least 6 characters.");
-    try {
-      await auth.createUserWithEmailAndPassword(email, pass);
-    } catch(e) {
-      setErr("auth-err", authMsg(e));
-    }
-  }
-  
-  /* ============================================================
-     AUTH â PHONE OTP
-  ============================================================ */
-  async function sendOTP() {
-    const phone = v("f-phone");
-    if (!phone) return setErr("auth-err", "Enter your phone number.");
-    setLoading("btn-otp", true);
-    try {
-      if (!window.recapVerifier) {
-        window.recapVerifier = new firebase.auth.RecaptchaVerifier(
-          "recaptcha-container", { size: "invisible" }
-        );
-      }
-      confirmRes = await auth.signInWithPhoneNumber(phone, window.recapVerifier);
-      document.getElementById("phone-step1").style.display = "none";
-      document.getElementById("phone-step2").style.display = "block";
-      toast("OTP sent! Check your messages.", "ok");
-    } catch(e) {
-      setErr("auth-err", authMsg(e));
-      setLoading("btn-otp", false);
-      if (window.recapVerifier) {
-        window.recapVerifier.clear();
-        window.recapVerifier = null;
-      }
-    }
-  }
-  
-  async function verifyOTP() {
-    const otp = v("f-otp");
-    if (!otp) return setErr("auth-err", "Enter the OTP.");
-    setLoading("btn-verify", true);
-    try {
-      await confirmRes.confirm(otp);
-    } catch(e) {
-      setErr("auth-err", "Invalid OTP. Please try again.");
-      setLoading("btn-verify", false);
-    }
-  }
-  
-  function backToPhone() {
-    document.getElementById("phone-step1").style.display = "block";
-    document.getElementById("phone-step2").style.display = "none";
-    confirmRes = null;
-  }
-  
-  /* ============================================================
-     USERNAME SELECTION
-  ============================================================ */
-  async function saveUsername() {
-    const name = v("f-username").trim();
-    if (name.length < 2)    return setErr("uname-err", "Minimum 2 characters.");
-    if (!/^\w+$/.test(name)) return setErr("uname-err", "Letters, numbers and _ only.");
-  
-    // Unique check
-    const dup = await db.collection("users").where("username","==",name).get();
-    if (!dup.empty) return setErr("uname-err", "Username taken â try another.");
-  
-    await db.collection("users").doc(me.uid).set({
-      uid:       me.uid,
-      username:  name,
-      email:     me.email || "",
-      phone:     me.phoneNumber || "",
-      online:    true,
-      lastSeen:  firebase.firestore.FieldValue.serverTimestamp(),
-      createdAt: firebase.firestore.FieldValue.serverTimestamp()
-    });
-  
-    myName = name;
-    bootApp();
-  }
-  
-  /* ============================================================
-     BOOT APP â runs after login + username confirmed
-  ============================================================ */
-  async function bootApp() {
-    showScreen("app");
-  
-    // Online presence
-    await setPresence(true);
-    window.addEventListener("beforeunload", () => setPresence(false));
-    document.addEventListener("visibilitychange", () => {
-      setPresence(!document.hidden);
-    });
-  
-    // Update sidebar profile
-    el("my-name-label").textContent = myName;
-    el("my-avatar").textContent = myName[0].toUpperCase();
-  
-    // Emoji picker event
-    el("ep").addEventListener("emoji-click", e => insertEmoji(e.detail.unicode));
-  
-    // Close popups on outside click
-    document.addEventListener("click", outsideClick);
-  
-    // Load friends list (live)
-    listenFriends();
-  
-    // Listen for incoming calls
-    listenIncomingCalls();
-  
-    // Push notifications
-    setupFCM();
-  
-    // Load trending GIFs in background
-    loadGIFs("trending");
-  }
-  
-  /* ============================================================
-     PRESENCE
-  ============================================================ */
-  async function setPresence(online) {
-    if (!me) return;
-    await db.collection("users").doc(me.uid).update({
-      online:   online,
-      lastSeen: firebase.firestore.FieldValue.serverTimestamp()
-    }).catch(() => {});
-  }
-  
-  /* ============================================================
-     FRIENDS LIST (live listener)
-  ============================================================ */
-  function listenFriends() {
-    db.collection("users").onSnapshot(snap => {
-      const list = el("friend-list");
-      list.innerHTML = "";
-      let found = 0;
-  
-      snap.forEach(doc => {
-        if (doc.id === me.uid) return; // skip self
-        found++;
-        const f = doc.data();
-        const online = f.online === true;
-  
-        const div = document.createElement("div");
-        div.className = "friend-item" + (doc.id === chatWith ? " active" : "");
-        div.id = "fi-" + doc.id;
-        div.onclick = () => openChat(doc.id, f.username);
-        div.innerHTML = `
-          <div class="friend-avatar-wrap">
-            <div class="avatar" data-status="${online?"online":"offline"}">${f.username[0].toUpperCase()}</div>
-          </div>
-          <div class="friend-info">
-            <div class="friend-name">${esc(f.username)}</div>
-            <div class="friend-preview" id="fp-${doc.id}">Tap to chat</div>
-          </div>
-          <div class="friend-meta">
-            <div class="friend-time" id="ft-${doc.id}"></div>
-            ${online ? '<div class="online-dot"></div>' : ''}
-          </div>`;
-        list.appendChild(div);
-      });
-  
-      if (!found) {
-        list.innerHTML = '<div style="padding:14px;font-size:13px;color:var(--text-muted);">Waiting for friends to joinâ¦</div>';
-      }
-    });
-  }
-  
-  /* ============================================================
-     OPEN CHAT
-  ============================================================ */
-  function openChat(uid, name) {
-    // Cleanup previous listeners
-    if (unsubMsgs)   unsubMsgs();
-    if (unsubStatus) unsubStatus();
-    if (unsubTyping) unsubTyping();
-  
-    chatWith = uid;
-    chatName = name;
-  
-    // Show chat window
-    el("no-chat").style.display   = "none";
-    el("chat-window").style.display = "flex";
-    el("messages-container").innerHTML = "";
-    el("typing-bar").innerHTML = "";
-  
-    // Update header
-    el("ch-avatar").textContent = name[0].toUpperCase();
-    el("ch-name").textContent   = name;
-    el("ch-status").textContent  = "â¦";
-    el("ch-status").className    = "ch-status";
-  
-    // Highlight in sidebar
-    document.querySelectorAll(".friend-item").forEach(fi => fi.classList.remove("active"));
-    const fi = el("fi-" + uid);
-    if (fi) fi.classList.add("active");
-  
-    // Start listeners
-    listenMessages();
-    listenFriendOnline();
-    listenFriendTyping();
-  }
-  
-  /* ============================================================
-     MESSAGES â Firestore real-time listener
-  ============================================================ */
-  function chatId(a, b) { return [a, b].sort().join("_"); }
-  
-  function listenMessages() {
-    const cid = chatId(me.uid, chatWith);
-    unsubMsgs = db.collection("chats").doc(cid)
-      .collection("messages")
-      .orderBy("timestamp","asc")
-      .onSnapshot(snap => {
-        snap.docChanges().forEach(ch => {
-          if (ch.type === "added") renderMsg(ch.doc.data());
-        });
-        scrollBottom();
-      });
-  }
-  
-  function renderMsg(msg) {
-    const mc = el("messages-container");
-    const sent = msg.senderUid === me.uid;
-    const t = msg.timestamp ? fmtTime(msg.timestamp.toDate()) : "";
-  
-    const row = document.createElement("div");
-    row.className = "msg-row " + (sent ? "sent" : "received");
-  
-    let inner = "";
-    if (msg.type === "text") {
-      inner = `<div class="bubble">${esc(msg.text)}<span class="msg-time">${t}</span></div>`;
-    } else if (msg.type === "image") {
-      inner = `<div class="bubble img-bubble">
-        <img src="${msg.url}" alt="Image" onclick="openImg('${msg.url}')">
-        <span class="msg-time">${t}</span>
-      </div>`;
-    } else if (msg.type === "gif") {
-      inner = `<div class="bubble img-bubble">
-        <img src="${msg.url}" alt="GIF">
-        <span class="msg-time">${t}</span>
-      </div>`;
-    }
-  
-    row.innerHTML = inner;
-    mc.appendChild(row);
-  }
-  
-  async function sendMsg() {
-    const input = el("message-input");
-    const text  = input.value.trim();
-    if (!text || !chatWith) return;
-  
-    input.value = "";
-    autoResize();
-  
-    const cid = chatId(me.uid, chatWith);
-    await db.collection("chats").doc(cid).collection("messages").add({
-      senderUid:  me.uid,
-      senderName: myName,
-      type:       "text",
-      text:       text,
-      timestamp:  firebase.firestore.FieldValue.serverTimestamp()
-    });
-    await db.collection("chats").doc(cid).set({
-      lastMsg:   text,
-      lastTs:    firebase.firestore.FieldValue.serverTimestamp(),
-      members:   [me.uid, chatWith]
-    }, { merge: true });
-  
-    await clearTyping();
-  }
-  
-  async function sendMedia(type, url) {
-    const cid = chatId(me.uid, chatWith);
-    await db.collection("chats").doc(cid).collection("messages").add({
-      senderUid:  me.uid,
-      senderName: myName,
-      type:       type,
-      url:        url,
-      timestamp:  firebase.firestore.FieldValue.serverTimestamp()
-    });
-  }
-  
-  /* ============================================================
-     TYPING INDICATOR
-  ============================================================ */
-  async function onType() {
-    autoResize();
-    if (!chatWith) return;
-    const cid = chatId(me.uid, chatWith);
-    await db.collection("chats").doc(cid).collection("typing")
-      .doc(me.uid).set({ isTyping: true, ts: firebase.firestore.FieldValue.serverTimestamp() });
-    clearTimeout(typTimer);
-    typTimer = setTimeout(clearTyping, 3000);
-  }
-  
-  async function clearTyping() {
-    if (!me || !chatWith) return;
-    const cid = chatId(me.uid, chatWith);
-    await db.collection("chats").doc(cid).collection("typing")
-      .doc(me.uid).set({ isTyping: false }).catch(() => {});
-  }
-  
-  function listenFriendOnline() {
-    unsubStatus = db.collection("users").doc(chatWith).onSnapshot(snap => {
-      if (!snap.exists) return;
-      const d = snap.data();
-      const s = el("ch-status");
-      if (d.online) {
-        s.textContent = "â Online";
-        s.className   = "ch-status online";
-      } else {
-        const ago = d.lastSeen ? "Last seen " + timeAgo(d.lastSeen.toDate()) : "Offline";
-        s.textContent = ago;
-        s.className   = "ch-status";
-      }
-    });
-  }
-  
-  function listenFriendTyping() {
-    const cid = chatId(me.uid, chatWith);
-    unsubTyping = db.collection("chats").doc(cid)
-      .collection("typing").doc(chatWith)
-      .onSnapshot(snap => {
-        const tb = el("typing-bar");
-        if (snap.exists && snap.data().isTyping) {
-          tb.innerHTML = `
-            <div class="typing-dots">
-              <div class="typing-dot"></div>
-              <div class="typing-dot"></div>
-              <div class="typing-dot"></div>
-            </div>
-            <span>${esc(chatName)} is typingâ¦</span>`;
-        } else {
-          tb.innerHTML = "";
-        }
-      });
-  }
-  
-  /* ============================================================
-     EMOJI PICKER
-  ============================================================ */
-  function toggleEmoji(e) {
-    e.stopPropagation();
-    const panel = el("emoji-panel");
-    const gif   = el("gif-panel");
-    gif.style.display = "none";
-    panel.style.display = panel.style.display === "block" ? "none" : "block";
-  }
-  
-  function insertEmoji(uni) {
-    const inp = el("message-input");
-    const pos = inp.selectionStart || 0;
-    inp.value = inp.value.slice(0, pos) + uni + inp.value.slice(pos);
-    inp.focus();
-    inp.selectionStart = inp.selectionEnd = pos + uni.length;
-    el("emoji-panel").style.display = "none";
-  }
-  
-  /* ============================================================
-     GIF PICKER â GIPHY API
-  ============================================================ */
-  function toggleGif(e) {
-    e.stopPropagation();
-    const panel = el("gif-panel");
-    const emoji = el("emoji-panel");
-    emoji.style.display = "none";
-    panel.style.display = panel.style.display === "flex" ? "none" : "flex";
-  }
-  
-  let gifTimer;
-  function onGifSearch() {
-    clearTimeout(gifTimer);
-    const q = el("gif-q").value.trim();
-    gifTimer = setTimeout(() => loadGIFs(q || "trending", q), 400);
-  }
-  
-  async function loadGIFs(mode, query) {
-    const grid = el("gif-grid");
-    grid.innerHTML = '<div class="gif-empty">Loadingâ¦</div>';
-  
-    let url;
-    if (mode === "trending") {
-      url = `https://api.giphy.com/v1/gifs/trending?api_key=${GIPHY_KEY}&limit=20&rating=g`;
-    } else {
-      url = `https://api.giphy.com/v1/gifs/search?api_key=${GIPHY_KEY}&q=${encodeURIComponent(query)}&limit=20&rating=g`;
-    }
-  
-    try {
-      const res  = await fetch(url);
-      const data = await res.json();
-      if (!data.data?.length) {
-        grid.innerHTML = '<div class="gif-empty">No GIFs found.</div>';
-        return;
-      }
-      grid.innerHTML = "";
-      data.data.forEach(gif => {
-        const card = document.createElement("div");
-        card.className = "gif-card";
-        card.innerHTML = `<img src="${gif.images.fixed_height_small.url}" loading="lazy" alt="gif">`;
-        card.onclick = () => pickGif(gif.images.original.url);
-        grid.appendChild(card);
-      });
-    } catch(_) {
-      grid.innerHTML = '<div class="gif-empty">â ï¸ Set a valid GIPHY API key in the config.</div>';
-    }
-  }
-  
-  function pickGif(url) {
-    if (!chatWith) { toast("Open a chat first!", "err"); return; }
-    sendMedia("gif", url);
-    el("gif-panel").style.display = "none";
-  }
-  
-  /* ============================================================
-     IMAGE UPLOAD â Firebase Storage
-  ============================================================ */
-  async function uploadImage(e) {
-    const file = e.target.files[0];
-    if (!file || !chatWith) return;
-    if (file.size > 10 * 1024 * 1024) { toast("Image too large (max 10 MB).", "err"); return; }
-  
-    toast("ð¤ Uploadingâ¦", "ok");
-    try {
-      const ref  = storage.ref(`chat_images/${me.uid}_${Date.now()}_${file.name}`);
-      await ref.put(file);
-      const url  = await ref.getDownloadURL();
-      await sendMedia("image", url);
-      toast("â Image sent!", "ok");
-    } catch(err) {
-      toast("Upload failed: " + err.message, "err");
-    }
-    e.target.value = "";
-  }
-  
-  /* ============================================================
-     WEBRTC â AUDIO / VIDEO CALLS
-  ============================================================ */
-  async function startCall(type) {
-    if (!chatWith) { toast("Open a chat to call.", "err"); return; }
-  
-    callType    = type;
-    isCaller    = true;
-    muted       = false;
-    camOff      = false;
-  
-    try {
-      localMedia = await navigator.mediaDevices.getUserMedia({
-        audio: true,
-        video: type === "video"
-      });
-      showCallUI(chatName, "Callingâ¦", type);
-      if (type === "video") el("local-video").srcObject = localMedia;
-  
-      pc = new RTCPeerConnection(RTC_CFG);
-      localMedia.getTracks().forEach(t => pc.addTrack(t, localMedia));
-  
-      pc.ontrack = ev => { el("remote-video").srcObject = ev.streams[0]; };
-  
-      const offer = await pc.createOffer();
-      await pc.setLocalDescription(offer);
-  
-      const ref = await db.collection("calls").add({
-        callType:    type,
-        callerUid:   me.uid,
-        callerName:  myName,
-        calleeUid:   chatWith,
-        status:      "ringing",
-        offer:       { sdp: offer.sdp, type: offer.type },
-        createdAt:   firebase.firestore.FieldValue.serverTimestamp()
-      });
-      callDocId = ref.id;
-  
-      pc.onicecandidate = async ev => {
-        if (ev.candidate)
-          await db.collection("calls").doc(callDocId)
-            .collection("callerCandidates").add(ev.candidate.toJSON());
-      };
-  
-      // Watch for answer
-      db.collection("calls").doc(callDocId).onSnapshot(async snap => {
-        const d = snap.data();
-        if (!d) return;
-        if (!pc.currentRemoteDescription && d.answer) {
-          await pc.setRemoteDescription(new RTCSessionDescription(d.answer));
-          el("call-state").textContent = "ð¢ Connected";
-        }
-        if (d.status === "declined") { toast("Call declined.", "err"); endCall(); }
-        if (d.status === "ended")    { endCall(); }
-      });
-  
-      db.collection("calls").doc(callDocId)
-        .collection("calleeCandidates").onSnapshot(snap => {
-          snap.docChanges().forEach(async ch => {
-            if (ch.type === "added")
-              await pc.addIceCandidate(new RTCIceCandidate(ch.doc.data()));
-          });
-        });
-  
-    } catch(err) {
-      toast("Could not start call: " + err.message, "err");
-      endCall();
-    }
-  }
-  
-  async function acceptCall() {
-    el("incoming-call").style.display = "none";
-    isCaller = false;
-    muted    = false;
-    camOff   = false;
-  
-    try {
-      localMedia = await navigator.mediaDevices.getUserMedia({
-        audio: true,
-        video: callType === "video"
-      });
-      const callerName = el("inc-name").textContent;
-      showCallUI(callerName, "Connectingâ¦", callType);
-      if (callType === "video") el("local-video").srcObject = localMedia;
-  
-      pc = new RTCPeerConnection(RTC_CFG);
-      localMedia.getTracks().forEach(t => pc.addTrack(t, localMedia));
-      pc.ontrack = ev => { el("remote-video").srcObject = ev.streams[0]; };
-  
-      const callSnap = await db.collection("calls").doc(callDocId).get();
-      const offer    = callSnap.data().offer;
-      await pc.setRemoteDescription(new RTCSessionDescription(offer));
-  
-      const answer = await pc.createAnswer();
-      await pc.setLocalDescription(answer);
-  
-      await db.collection("calls").doc(callDocId).update({
-        answer: { sdp: answer.sdp, type: answer.type },
-        status: "connected"
-      });
-  
-      pc.onicecandidate = async ev => {
-        if (ev.candidate)
-          await db.collection("calls").doc(callDocId)
-            .collection("calleeCandidates").add(ev.candidate.toJSON());
-      };
-  
-      db.collection("calls").doc(callDocId)
-        .collection("callerCandidates").onSnapshot(snap => {
-          snap.docChanges().forEach(async ch => {
-            if (ch.type === "added")
-              await pc.addIceCandidate(new RTCIceCandidate(ch.doc.data()));
-          });
-        });
-  
-      db.collection("calls").doc(callDocId).onSnapshot(snap => {
-        if (snap.data()?.status === "ended") endCall();
-      });
-  
-      el("call-state").textContent = "ð¢ Connected";
-    } catch(err) {
-      toast("Could not connect: " + err.message, "err");
-      endCall();
-    }
-  }
-  
-  async function declineCall() {
-    el("incoming-call").style.display = "none";
-    if (callDocId)
-      await db.collection("calls").doc(callDocId).update({ status: "declined" }).catch(() => {});
-    callDocId = null;
-  }
-  
-  async function endCall() {
-    if (pc)         { pc.close(); pc = null; }
-    if (localMedia) { localMedia.getTracks().forEach(t => t.stop()); localMedia = null; }
-    if (callDocId)  {
-      await db.collection("calls").doc(callDocId).update({ status: "ended" }).catch(() => {});
-      callDocId = null;
-    }
-    el("call-overlay").style.display = "none";
-    el("video-wrap").style.display   = "none";
-    el("remote-video").srcObject     = null;
-    el("local-video").srcObject      = null;
-  }
-  
-  function showCallUI(name, state, type) {
-    el("call-av").textContent       = name[0].toUpperCase();
-    el("call-name").textContent     = name;
-    el("call-state").textContent    = state;
-    el("call-overlay").style.display = "flex";
-    if (type === "video") el("video-wrap").style.display = "block";
-  }
-  
-  function toggleMute() {
-    if (!localMedia) return;
-    muted = !muted;
-    localMedia.getAudioTracks().forEach(t => t.enabled = !muted);
-    el("btn-mute").textContent = muted ? "ð" : "ð¤";
-  }
-  
-  function toggleCam() {
-    if (!localMedia) return;
-    camOff = !camOff;
-    localMedia.getVideoTracks().forEach(t => t.enabled = !camOff);
-    el("btn-cam").textContent = camOff ? "ðµ" : "ð·";
-  }
-  
-  // Listen for incoming calls
-  function listenIncomingCalls() {
-    db.collection("calls")
-      .where("calleeUid", "==", me.uid)
-      .where("status",    "==", "ringing")
-      .onSnapshot(snap => {
-        snap.docChanges().forEach(ch => {
-          if (ch.type === "added") {
-            const d = ch.doc.data();
-            callDocId  = ch.doc.id;
-            callType   = d.callType;
-            el("inc-av").textContent   = d.callerName[0].toUpperCase();
-            el("inc-name").textContent = d.callerName;
-            el("inc-type").textContent = d.callType === "video" ? "ð¹ Video Call" : "ð Voice Call";
-            el("incoming-call").style.display = "block";
-          }
-        });
-      });
-  }
-  
-  /* ============================================================
-     PUSH NOTIFICATIONS (FCM)
-  ============================================================ */
-  async function setupFCM() {
-    if (!messaging) return;
-    try {
-      const perm = await Notification.requestPermission();
-      if (perm !== "granted") return;
-      const token = await messaging.getToken({ vapidKey: FCM_VAPID });
-      if (token)
-        await db.collection("users").doc(me.uid).update({ fcmToken: token });
-  
-      messaging.onMessage(payload => {
-        toast(`ð ${payload.notification?.title}: ${payload.notification?.body}`, "ok");
-      });
-    } catch(e) {
-      console.log("FCM setup skipped:", e.message);
-    }
-  }
-  
-  /* ============================================================
-     UI HELPERS
-  ============================================================ */
-  function showScreen(s) {
-    el("auth-screen").style.display     = s === "auth"     ? "flex" : "none";
-    el("username-screen").style.display = s === "username" ? "flex" : "none";
-    el("app-screen").style.display      = s === "app"      ? "flex" : "none";
-  }
-  
-  async function signOut() {
-    await setPresence(false);
-    await auth.signOut();
-  }
-  
-  function toggleTheme() {
-    const html  = document.documentElement;
-    const dark  = html.getAttribute("data-theme") !== "light";
-    html.setAttribute("data-theme", dark ? "light" : "dark");
-    el("theme-btn").textContent = dark ? "âï¸" : "ð";
-  }
-  
-  function onInputKey(e) {
-    if (e.key === "Enter" && !e.shiftKey) { e.preventDefault(); sendMsg(); }
-  }
-  
-  function autoResize() {
-    const t = el("message-input");
-    t.style.height = "auto";
-    t.style.height = Math.min(t.scrollHeight, 100) + "px";
-  }
-  
-  function scrollBottom() {
-    const c = el("messages-container");
-    c.scrollTop = c.scrollHeight;
-  }
-  
-  function outsideClick(e) {
-    if (!e.target.closest("#emoji-panel") && !e.target.closest(".tool-btn"))
-      el("emoji-panel").style.display = "none";
-    if (!e.target.closest("#gif-panel") && !e.target.closest(".tool-btn"))
-      el("gif-panel").style.display = "none";
-  }
-  
-  function openImg(url) {
-    el("modal-img").src = url;
-    el("img-modal").style.display = "flex";
-  }
-  
-  function toast(msg, type = "ok") {
-    const wrap = el("toast-wrap");
-    const t = document.createElement("div");
-    t.className = `toast ${type}`;
-    t.textContent = msg;
-    wrap.appendChild(t);
-    setTimeout(() => t.remove(), 4000);
-  }
-  
-  function setErr(id, msg) {
-    const e = el(id);
-    e.textContent  = msg;
-    e.style.display = "block";
-  }
-  
-  function clearErr(id) {
-    el(id).style.display = "none";
-  }
-  
-  function setLoading(id, on) {
-    const b = el(id);
-    b.disabled = on;
-    b.innerHTML = on ? '<span class="spinner"></span>' : (id === "btn-login" ? "Sign In" : id === "btn-otp" ? "Send OTP" : "Verify & Sign In");
-  }
-  
-  function el(id)  { return document.getElementById(id); }
-  function v(id)   { return el(id).value.trim(); }
-  function esc(s)  {
-    const d = document.createElement("div");
-    d.appendChild(document.createTextNode(s));
-    return d.innerHTML;
-  }
-  
-  function fmtTime(d) {
-    return d.toLocaleTimeString([], { hour:"2-digit", minute:"2-digit" });
-  }
-  
-  function timeAgo(date) {
-    const s = Math.floor((Date.now() - date) / 1000);
-    if (s < 60)    return "just now";
-    if (s < 3600)  return Math.floor(s/60)   + "m ago";
-    if (s < 86400) return Math.floor(s/3600) + "h ago";
-    return Math.floor(s/86400) + "d ago";
-  }
-  
-  function authMsg(err) {
-    const map = {
-      "auth/user-not-found":       "No account found with this email.",
-      "auth/wrong-password":       "Incorrect password.",
-      "auth/email-already-in-use": "Email already registered â try signing in.",
-      "auth/invalid-email":        "Invalid email address.",
-      "auth/weak-password":        "Password must be at least 6 characters.",
-      "auth/too-many-requests":    "Too many attempts. Try again later.",
-      "auth/network-request-failed":"Network error â check your connection.",
-      "auth/invalid-verification-code":"Invalid OTP code."
-    };
-    return map[err.code] || err.message;
-  }
- </script>
-
- <!--
-  =====================================================
-  ð  SETUP GUIDE â READ BEFORE DEPLOYING
-  =====================================================
-
-  1. FIREBASE PROJECT
-     âââââââââââââââââ
-     a) Go to https://console.firebase.google.com
-     b) Create a new project called "TrioTalk"
-     c) Register a web app & copy the config into FIREBASE_CONFIG above
-
-  2. FIREBASE AUTHENTICATION
-     âââââââââââââââââââââââââ
-     a) Enable "Email/Password" provider
-     b) Enable "Phone" provider
-        â Phone auth needs a verified domain or localhost for testing
-
-  3. FIRESTORE DATABASE
-     ââââââââââââââââââââ
-     a) Create a database in "production" mode
-     b) Add these security rules:
-
-     rules_version = '2';
-     service cloud.firestore {
-       match /databases/{database}/documents {
-         // Only signed-in users can read/write their own user doc
-         match /users/{uid} {
-           allow read: if request.auth != null;
-           allow write: if request.auth.uid == uid;
-         }
-         // Chat messages: only participants can read/write
-         match /chats/{chatId}/{document=**} {
-           allow read, write: if request.auth != null &&
-             request.auth.uid in resource.data.members;
-         }
-         // Calls
-         match /calls/{callId} {
-           allow read, write: if request.auth != null;
-         }
-         match /calls/{callId}/{sub=**} {
-           allow read, write: if request.auth != null;
-         }
-       }
-     }
-
-  4. FIREBASE STORAGE
-     âââââââââââââââââââ
-     Enable Storage and set rules to allow authenticated users to upload images.
-
-  5. FIREBASE CLOUD MESSAGING (push notifications)
-     âââââââââââââââââââââââââââââââââââââââââââââ
-     a) In Firebase Console â Project Settings â Cloud Messaging
-        â Generate a Web Push certificate (VAPID key) â paste as FCM_VAPID above
-     b) Create "firebase-messaging-sw.js" in the same folder as this file:
-
-     importScripts('https://www.gstatic.com/firebasejs/9.22.2/firebase-app-compat.js');
-     importScripts('https://www.gstatic.com/firebasejs/9.22.2/firebase-messaging-compat.js');
-     firebase.initializeApp({ ...same config as above... });
-     const messaging = firebase.messaging();
-     messaging.onBackgroundMessage(payload => {
-       self.registration.showNotification(payload.notification.title, {
-         body: payload.notification.body,
-         icon: '/icon.png'
-       });
-     });
-
-  6. GIPHY API KEY
-     âââââââââââââââ
-     Sign up at https://developers.giphy.com â Create App â copy API key â paste as GIPHY_KEY above
-
-  7. ADD YOUR 3 FRIENDS
-     âââââââââââââââââââââ
-     Replace the emails in ALLOWED_EMAILS with your actual friends' emails.
-     Only those 3 addresses can create accounts or sign in.
-
-  8. DEPLOY
-     ââââââââ
-     Host these files (triotalk.html + firebase-messaging-sw.js) on Firebase Hosting,
-     Netlify, Vercel, or any static server. HTTPS is required for camera/mic access.
-
-  =====================================================
--->
-</body>
-
 </html>
